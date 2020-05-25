@@ -80,4 +80,17 @@ public class MouseManager : MonoBehaviour
 
         print($"Clicked object [ Name: {clickedObject.name} , Type: {clickedObject.GetType().Name}]");
     }
+
+    public void HighlightNeighbouringTiles(Vector3 mousePosition)
+    {
+        var clickedObject = FindClickedObject(mousePosition);
+        if (clickedObject is null)
+            return;
+
+        var tile = clickedObject.GetComponent<Tile>();
+        foreach (var item in tile.NeighbouringTiles)
+        {
+            item.gameObject.GetComponent<Renderer>().sharedMaterial.color = new Color(1, 1, 1);
+        }
+    }
 }
