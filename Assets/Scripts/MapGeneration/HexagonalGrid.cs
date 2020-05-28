@@ -6,9 +6,8 @@ using System.Collections.Generic;
 internal class HexagonalGrid : Map
 {
 
-    private static XYPair[] XYDifferenceNeighboursEvenRow = new XYPair[] { new XYPair(1, 0), new XYPair(0, -1), new XYPair(-1, 0), new XYPair(0, 1), new XYPair(-1, -1), new XYPair(-1, 1) };
-    private static XYPair[] XYDifferenceNeighboursOddRow = new XYPair[] { new XYPair(1, 0), new XYPair(0, -1), new XYPair(-1, 0), new XYPair(0, 1), new XYPair(1, -1), new XYPair(1, 1) };
-
+    private static XYPair[] XYDifferenceNeighboursOddRow = new XYPair[] { new XYPair(1, 0), new XYPair(+1, -1), new XYPair(0, -1), new XYPair(-1, -1), new XYPair(-1, 0), new XYPair(0, 1) };
+    private static XYPair[]  XYDifferenceNeighboursEvenRow = new XYPair[] { new XYPair(1, 1), new XYPair(1, 0), new XYPair(0, -1), new XYPair(-1, 0), new XYPair(-1, 1), new XYPair(0, 1) };
 
     public Vector3 Origin { get; }
 
@@ -59,7 +58,9 @@ internal class HexagonalGrid : Map
         {
             var worldPos = gridComponent.WorldPosition;
 
-            var obj = UnityEngine.Object.Instantiate(gridComponent.RenderObject, worldPos, Quaternion.identity);
+            var obj = gridComponent.RenderObject;
+            obj.transform.position = worldPos;
+
             obj.name = $"({ worldPos.x}:{worldPos.z})";
 
             obj.transform.SetParent(parent.transform, false);
