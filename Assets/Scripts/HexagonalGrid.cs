@@ -60,6 +60,7 @@ internal class HexagonalGrid : Map
             var worldPos = gridComponent.WorldPosition;
 
             var obj = UnityEngine.Object.Instantiate(gridComponent.RenderObject, worldPos, Quaternion.identity);
+            obj.name = $"({ worldPos.x}:{worldPos.z})";
 
             obj.transform.SetParent(parent.transform, false);
         }
