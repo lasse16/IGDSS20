@@ -1,6 +1,0 @@
-﻿namespace
-{
-    class Tile
-    {
-    }
-}
