@@ -11,12 +11,19 @@ using UnityEngine;
 public class MouseManager : MonoBehaviour
 {
     [SerializeField] private MouseSettings Settings;
+
     public Vector3Event LeftClick;
     public Vector3Event RightClickDrag;
     public FloatEvent MouseScroll;
 
     private Vector3 lastMousePosition = Vector3.zero;
     private bool draggingRight;
+    private IHighlighter highlighter;
+
+    private void Start()
+    {
+        highlighter = GetComponent<IHighlighter>();
+    }
 
     void Update()
     {
@@ -90,7 +97,7 @@ public class MouseManager : MonoBehaviour
         var tile = clickedObject.GetComponent<Tile>();
         foreach (var item in tile.NeighbouringTiles)
         {
-            item.gameObject.GetComponent<Renderer>().sharedMaterial.color = new Color(1, 1, 1);
+            highlighter.HighlightGameObject(item.gameObject);
         }
     }
 }
