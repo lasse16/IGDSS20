@@ -73,14 +73,8 @@ internal class HexagonalGrid : Map
         var possibleNeighbours = GetPossibleNeigbours(x, y);
         foreach (var neighbour in possibleNeighbours)
         {
-            try
-            {
+            if (0 <= neighbour.X && neighbour.X < gridWidth && 0 <= neighbour.Y && neighbour.Y < gridHeight)
                 neighbours.Add(GetTile(neighbour.X, neighbour.Y));
-            }
-            catch (IndexOutOfRangeException)
-            {
-                continue;
-            }
         }
 
         return neighbours;
