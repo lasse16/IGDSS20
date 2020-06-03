@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ResourcesType 
+public enum ResourceType 
 { 
     Fish, 
     Wood, 

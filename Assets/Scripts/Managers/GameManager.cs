@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Add resource of given type to warehouse
-    public static void winResource(ResourcesType res, int count)
+    public static void winResource(ResourceType res, int count)
     {
         // TODO
 
@@ -62,14 +62,14 @@ public class GameManager : MonoBehaviour
     }
 
     // remove resource of given type to warehouse
-    public static void removeResource(ResourcesType res, int count)
+    public static void removeResource(ResourceType res, int count)
     {
         // TODO
 
         Debug.Log("I lost " + count + " " + res);
     }
 
-    public static bool checkAvailability(ResourcesType res, int count)
+    public static bool checkAvailability(ResourceType res, int count)
     {
         // could be combined with removeResource
         // TODO
