@@ -1,37 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-
+[RequireComponent(typeof(Tile))]
 public class Building : MonoBehaviour
 {
-    [Tooltip("Type of Building")]
-    public BuildingType buildingType;
-    [Tooltip("Money cost per economy cycle")]
-    public int upkeep = 0;
-    [Tooltip("Costs in money/ planks to build building.")]
-    public int buildCost_Money, buildCost_Plank;
+    [SerializeField] private GeneralBuildingStats GeneralBuildingStats;
 
-    // After merge, type should be Tile
-    [Tooltip("The tile where building is built on. ")]
-    public GameObject tile;
-    [Tooltip("Type of neighboring tile that boosts efficiency of production. ")]
-    public TileType efficientNeighboringTile;
 
-    [Tooltip("min/ max count of efficiency pushing neighbars that are used for calculations.")]
-    [Range (0,6)]
-    public int minEfficientNeigbor, maxEfficientNeighbor;
-
-    // this list hast to contain 0-2 items --> limit size
-    [Tooltip("0 - 2 resource types that are production input")]
-    public List<ResourcesType> inputResources;
-    [Tooltip("That's what the building produces.")]
-    public ResourcesType outputResource;
-    [Tooltip("How long is a production cycle in sec.")]
-    public float resourceGenerationInterval;
-    [Tooltip("How many resources are produced in a cycle. ")]
-    public int outputCount;
-
+    [HideInInspector]
+    public Tile tile;
 
     private float generationState;
     private float effectiveGenerationTime;
@@ -42,12 +20,12 @@ public class Building : MonoBehaviour
     void Start()
     {
         //effectiveGenerationTime = (float) (2 - Efficiency()) * resourceGenerationInterval;
-        effectiveGenerationTime = (2 - 0.5f) * resourceGenerationInterval;
+        effectiveGenerationTime = (2 - 0.5f) * GeneralBuildingStats.ResourceGenerationInterval;
     }
 
     // Update is called once per frame
     void Update()
-    {      
+    {
 
         if (productionRunning)
         {
@@ -58,8 +36,8 @@ public class Building : MonoBehaviour
             if (generationState >= effectiveGenerationTime)
             {
                 // create resource and reset cycle
-                GameManager.winResource(outputResource, outputCount);
-                generationState -= effectiveGenerationTime;    
+                GameManager.winResource(GeneralBuildingStats.OutputResource, GeneralBuildingStats.OutputCount);
+                generationState -= effectiveGenerationTime;
                 productionRunning = false;
 
                 // restart if possible
@@ -76,14 +54,14 @@ public class Building : MonoBehaviour
     /* 
      * checks if production can be started. 
      * If start is possible, the input res are taken from warehouse. 
-     */ 
+     */
     private void tryToStartProduction()
     {
         if (CanProductionStart())
         {
             // start production
             productionRunning = true;
-            inputResources.ForEach(delegate (ResourcesType it)
+            GeneralBuildingStats.InputResources.ForEach(delegate (ResourceType it)
             {
                 GameManager.removeResource(it, 1);
             });
@@ -116,29 +94,26 @@ public class Building : MonoBehaviour
         // count 'efficient' neighbors
         int counter = 0;
         float efficiency;
-        neighbors.ForEach(delegate (GameObject it)
+        foreach (var item in tile.NeighbouringTiles)
         {
 
-            // TODO
-
-            // check if item equals the efficient neighbor
-            if (it.name == efficientNeighboringTile.ToString()) counter++;
-        });
+        }
 
         // not efficient/ min max not right
-        if (counter == 0 || (maxEfficientNeighbor < minEfficientNeigbor)) return 0;
+        if (counter == 0 || (GeneralBuildingStats.MaxEfficientNeighbor < GeneralBuildingStats.MinEfficientNeigbor))
+            return 0;
 
         // clamp calculated efficiency into range [0,1]
-        efficiency = (float) counter / (1 + maxEfficientNeighbor - minEfficientNeigbor);
+        efficiency = (float) counter / (1 + GeneralBuildingStats.MaxEfficientNeighbor - GeneralBuildingStats.MinEfficientNeigbor);
         return Mathf.Clamp(efficiency, 0, 1);
     }
 
     /* asks GameManager if input resources are available --> production is startable
-     */ 
+     */
     private bool CanProductionStart()
     {
-        bool val = true; 
-        inputResources.ForEach(delegate (ResourcesType it)
+        bool val = true;
+        GeneralBuildingStats.InputResources.ForEach(delegate (ResourceType it)
         {
             if (!GameManager.checkAvailability(it, 1))
             {
@@ -147,8 +122,6 @@ public class Building : MonoBehaviour
         });
         return val;
     }
-
-
 
 
 
