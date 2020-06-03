@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
         getAllUpkeepCost();
     }
 
+    internal static List<bool> GetResourceIfAvaiable(List<ResourceType> inputResources)
+    {
+        throw new NotImplementedException();
+    }
 
     private int getAllUpkeepCost()
     {
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Add resource of given type to warehouse
-    public static void winResource(ResourceType res, int count)
+    public static void AddResource(ResourceType res, int count)
     {
         // TODO
 
