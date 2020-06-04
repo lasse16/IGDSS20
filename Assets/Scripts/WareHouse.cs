@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Assets.Scripts
 {
@@ -13,16 +14,26 @@ namespace Assets.Scripts
             StockPile = new Dictionary<ResourceType, int>();
         }
 
-        internal List<bool> GetResourcesIfAvailable(List<ResourceType> inputResources)
+        internal List<bool> GetResourcesIfAvailable(List<ResourceType> inputResources, List<int> quantities = null)
         {
+            if (quantities is null)
+                quantities = inputResources.Select(item => 1).ToList();
+
+
+            if (inputResources.Count != quantities.Count)
+                throw new ArgumentException($"Length of required resources and quantites are not equal: resources {inputResources.Count} quantities {quantities.Count}");
+
             var resourceAvailable = new List<bool>();
 
             var multipleResourceLock = new object();
             lock (multipleResourceLock)
             {
-                foreach (var item in inputResources)
+                for (int i = 0; i < inputResources.Count; i++)
                 {
-                    resourceAvailable.Add(GetResourceIfAvailable(item, 1));
+                    var item = inputResources[i];
+                    var requiredQuantity = quantities[i];
+
+                    resourceAvailable.Add(GetResourceIfAvailable(item, requiredQuantity));
                 }
             }
 
