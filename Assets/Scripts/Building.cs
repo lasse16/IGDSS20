@@ -68,4 +68,10 @@ public class Building : MonoBehaviour
         var efficiency = (counter - GeneralBuildingStats.MinEfficientNeigbor) / (GeneralBuildingStats.MaxEfficientNeighbor - GeneralBuildingStats.MinEfficientNeigbor);
         return Mathf.Clamp(efficiency, 0, 1);
     }
+
+
+    public int GetUpkeepCost()
+    {
+        return GeneralBuildingStats.UpkeepCost;
+    }
 }

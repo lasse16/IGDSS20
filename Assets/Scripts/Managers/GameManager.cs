@@ -9,10 +9,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture2D _heightmap;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private TileSet _tileSet;
+    [SerializeField] private BuildingManager _buildingManager;
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
     [SerializeField] private bool AllowCameraAngleToInfluenceBoundaries;
 
-    private int moneyPool;
+    [SerializeField] private int moneyPool;
+
+    //TODO hardcoded for now
+    private const int tickIntervalInSeconds = 60;
+    private float timeSinceLastTick;
 
     void Start()
     {
@@ -34,8 +39,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Every 60 sec 
-        // tickEconomy()
+        timeSinceLastTick += Time.deltaTime;
+
+        if (timeSinceLastTick > tickIntervalInSeconds)
+        {
+            TickEconomy();
+            timeSinceLastTick =- tickIntervalInSeconds;
+        }
     }
 
 
@@ -43,42 +53,7 @@ public class GameManager : MonoBehaviour
     {
         // constant income
         moneyPool += 100;
-        // pay upkeep costs
-        getAllUpkeepCost();
-    }
-
-    internal static List<bool> GetResourceIfAvaiable(List<ResourceType> inputResources)
-    {
-        throw new NotImplementedException();
-    }
-
-    private int getAllUpkeepCost()
-    {
-        // TODO
-        return 10;
-    }
-
-    // Add resource of given type to warehouse
-    public static void AddResource(ResourceType res, int count)
-    {
-        // TODO
-
-        Debug.Log("I got " + count + " " + res);
-    }
-
-    // remove resource of given type to warehouse
-    public static void removeResource(ResourceType res, int count)
-    {
-        // TODO
-
-        Debug.Log("I lost " + count + " " + res);
-    }
-
-    public static bool checkAvailability(ResourceType res, int count)
-    {
-        // could be combined with removeResource
-        // TODO
-
-        return true;
+        var upkeepCost = _buildingManager.GetUpkeepCost();
+        moneyPool =- upkeepCost;
     }
 }
