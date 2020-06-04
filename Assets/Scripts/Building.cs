@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [SerializeField] private GeneralBuildingStats GeneralBuildingStats;
+    [SerializeField] private WareHouse wareHouse;
 
 
     [HideInInspector]
@@ -34,7 +36,7 @@ public class Building : MonoBehaviour
 
         if (TimeInCurrentGenerationCycle >= EffectiveGenerationTime)
         {
-            GameManager.AddResource(GeneralBuildingStats.OutputResource, GeneralBuildingStats.OutputCount);
+            wareHouse.AddResource(GeneralBuildingStats.OutputResource, GeneralBuildingStats.OutputCount);
             TimeInCurrentGenerationCycle -= EffectiveGenerationTime;
             productionRunning = false;
         }
@@ -45,7 +47,7 @@ public class Building : MonoBehaviour
     private void TryStartProduction()
     {
 
-        var inputResources = GameManager.GetResourceIfAvaiable(GeneralBuildingStats.InputResources);
+        var inputResources = wareHouse.GetResourcesIfAvailable(GeneralBuildingStats.InputResources);
         bool allResourcesAvaiable = inputResources.Contains(false);
 
         productionRunning = allResourcesAvaiable;
