@@ -3,10 +3,10 @@
 [CreateAssetMenu(fileName = "data", menuName = "ScriptableObjects/TileSet", order = 1)]
 public class TileSet : ScriptableObject
 {
-    public GameObject WaterTile;
-    public GameObject SandTile;
-    public GameObject GrassTile;
-    public GameObject ForestTile;
-    public GameObject StoneTile;
-    public GameObject MountainTile;
+    public Tile WaterTile;
+    public Tile SandTile;
+    public Tile GrassTile;
+    public Tile ForestTile;
+    public Tile StoneTile;
+    public Tile MountainTile;
 }

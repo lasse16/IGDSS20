@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MapManager : MonoBehaviour
 {
@@ -25,13 +26,33 @@ public class MapManager : MonoBehaviour
             {
                 var color = _heightmap.GetPixel(x, y);
                 var grayValue = color.grayscale;
-                GameObject tile = GetTileFromColor(color,tileSet);
+                GameObject tile = Instantiate(GetTileFromColor(color, tileSet).gameObject);
 
                 grid.AddCell(tile, x, y);
                 grid.SetHeightOfCell(grayValue * heightScaling, x, y);
             }
         }
-          
+
+        //TODO Set up neighbouring relations on grid addition
+        //As the hex grid is static, neighbouring relations are only defined by row. Hence they can be known prior to fully filling in the grid.
+        // The moment a new gameobject is added, all neighbours can be updated, and add the new cell to their list.
+        //Make sure to add existing ones to the list of the new cell too.
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                var tile = grid.GetTile(x, y);
+                var neighbouringGameObjects = grid.FindNeighboursOfTile(x, y);
+                Tile component = tile.GetComponent<Tile>();
+
+                //Damn fancy LINQ stuff, VS refactor FTW
+                List<Tile> neighbours = (from item in neighbouringGameObjects
+                                         select item.GetComponent<Tile>()).ToList();
+
+                component.NeighbouringTiles = neighbours;
+            }
+        }
+
         return grid;
     }
 
@@ -40,7 +61,7 @@ public class MapManager : MonoBehaviour
         map.Show();
     }
 
-    private GameObject GetTileFromColor(Color color,TileSet _tileSet)
+    private Tile GetTileFromColor(Color color, TileSet _tileSet)
     {
         //As long as heightmap is only in grayscale, these two are equivalent
         //But the assignment description especially asks for the max value of all color channels
