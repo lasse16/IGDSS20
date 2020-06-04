@@ -58,7 +58,8 @@ namespace Assets.Scripts
 
         public void AddResource(ResourceType res, int count)
         {
-            count = count < 0 ? throw new ArgumentException() : count;
+            if(count < 0)
+                throw new ArgumentException($"Resource addition failed - resource{Enum.GetName(typeof(ResourceType),res)} count {count}");
 
             StockPile[res] += count;
         }
