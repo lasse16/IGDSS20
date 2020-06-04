@@ -3,6 +3,6 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public TileType _type;
+    public TileType Type;
     public List<Tile> NeighbouringTiles;
 }

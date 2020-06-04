@@ -55,13 +55,11 @@ public class Building : MonoBehaviour
 
 
     private float CalculateEfficiency()
-    {
-        var neighbors = tile.getNeighboringTiles();
-        
+    {        
         int counter = 0;
         foreach (var item in tile.NeighbouringTiles)
         {
-            if (item.TileType == GeneralBuildingStats.EfficientNeighboringTile)
+            if (item.Type == GeneralBuildingStats.EfficientNeighboringTile)
                 counter++;
         }
 
