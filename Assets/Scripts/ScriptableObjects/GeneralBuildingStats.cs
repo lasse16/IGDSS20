@@ -2,7 +2,7 @@
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName ="data",menuName ="ScribtableObjects/GeneralBuildingStats")]
+[CreateAssetMenu(fileName ="data",menuName ="ScriptableObjects/GeneralBuildingStats")]
 public class GeneralBuildingStats : ScriptableObject
 {
     [Tooltip("Type of building")]
