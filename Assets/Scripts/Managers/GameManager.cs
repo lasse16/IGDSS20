@@ -72,6 +72,9 @@ public class GameManager : MonoBehaviour
         var moneyAvailable = moneyPool > buildingScript.GeneralBuildingStats.BuildCostMoney;
 
         if (moneyAvailable && wareHouse.GetResourceIfAvailable(ResourceType.Plank, buildingScript.GeneralBuildingStats.BuildCostPlanks))
+        {
+            moneyPool -= buildingScript.GeneralBuildingStats.BuildCostMoney;
             _buildingManager.PlaceBuildingOnTile(buildingScript, tile);
+        }
     }
 }
