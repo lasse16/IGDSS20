@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Tile))]
 public class Building : MonoBehaviour
 {
-    [SerializeField] private GeneralBuildingStats GeneralBuildingStats;
+    public GeneralBuildingStats GeneralBuildingStats;
     [SerializeField] private WareHouse wareHouse;
 
 
@@ -55,7 +54,7 @@ public class Building : MonoBehaviour
 
 
     private float CalculateEfficiency()
-    {        
+    {
         int counter = 0;
         foreach (var item in tile.NeighbouringTiles)
         {
@@ -71,5 +70,10 @@ public class Building : MonoBehaviour
     public int GetUpkeepCost()
     {
         return GeneralBuildingStats.UpkeepCost;
+    }
+
+    public List<TileType> GetSupportedTiles()
+    {
+        return GeneralBuildingStats.AllowedTileTypes;
     }
 }

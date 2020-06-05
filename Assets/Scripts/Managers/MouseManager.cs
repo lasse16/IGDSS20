@@ -100,4 +100,18 @@ public class MouseManager : MonoBehaviour
             highlighter.HighlightGameObject(item.gameObject);
         }
     }
+
+    public Tile GetClickedTile(Vector3 mousePosition)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        //TODO Hardcoded string fix
+        var layerMask = LayerMask.NameToLayer("Tiles");
+        if (Physics.Raycast(ray, out RaycastHit hit, layerMask))
+        {
+            var clickedObject = hit.collider.gameObject;
+            return clickedObject.GetComponent<Tile>();
+        }
+
+        return null;
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         if (timeSinceLastTick > tickIntervalInSeconds)
         {
             TickEconomy();
-            timeSinceLastTick =- tickIntervalInSeconds;
+            timeSinceLastTick = -tickIntervalInSeconds;
         }
     }
 
@@ -54,6 +55,23 @@ public class GameManager : MonoBehaviour
         // constant income
         moneyPool += 100;
         var upkeepCost = _buildingManager.GetUpkeepCost();
-        moneyPool =- upkeepCost;
+        moneyPool = -upkeepCost;
+    }
+
+    public void SpawnBuilding(Vector3 mousePosition)
+    {
+        var wareHouse = GetComponent<WareHouse>();
+        var tile = mouseManager.GetClickedTile(mousePosition);
+
+        //TODO Select bulding type
+        var requiredBuildingType = BuildingType.Fishery;
+        var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
+
+
+        var buildingScript = building.GetComponent<Building>();
+        var moneyAvailable = moneyPool > buildingScript.GeneralBuildingStats.BuildCostMoney;
+
+        if (moneyAvailable && wareHouse.GetResourceIfAvailable(ResourceType.Plank, buildingScript.GeneralBuildingStats.BuildCostPlanks))
+            _buildingManager.PlaceBuildingOnTile(buildingScript, tile);
     }
 }
