@@ -7,11 +7,14 @@ namespace Assets.Scripts
 {
     public class WareHouse : MonoBehaviour
     {
-        private Dictionary<ResourceType, int> StockPile;
+        private Dictionary<ResourceType, int> StockPile = new Dictionary<ResourceType, int>();
 
         private void Start()
         {
-            StockPile = new Dictionary<ResourceType, int>();
+            foreach (ResourceType item in Enum.GetValues(typeof(ResourceType)))
+            {
+                StockPile.Add(item, 0);
+            }
         }
 
         internal List<bool> GetResourcesIfAvailable(List<ResourceType> inputResources, List<int> quantities = null)
@@ -46,7 +49,7 @@ namespace Assets.Scripts
             var resourceLock = new object();
             lock (resourceLock)
             {
-                if (StockPile[resource] <= quantity)
+                if (StockPile[resource] < quantity)
                 {
                     return false;
                 }

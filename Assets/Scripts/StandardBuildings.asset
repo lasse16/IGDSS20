@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9bd670e8999f348815e3e118ec1b77, type: 3}
   m_Name: StandardBuildings
   m_EditorClassIdentifier: 
-  Fishery: {fileID: 0}
-  LumberJack: {fileID: 0}
+  Fishery: {fileID: 376914742584050882, guid: 8efb1b36941e6a042b168d80d5ab8ff7, type: 3}
+  LumberJack: {fileID: 8893346717362336099, guid: b48e673041fa7b043b1c48e1a5bc3a0b,
+    type: 3}
   Sawmill: {fileID: 0}
   FrameworkKnitters: {fileID: 0}
   SheepFarm: {fileID: 0}

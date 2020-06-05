@@ -105,7 +105,7 @@ public class MouseManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         //TODO Hardcoded string fix
-        var layerMask = LayerMask.NameToLayer("Tiles");
+        var layerMask = LayerMask.GetMask("Tiles");
         if (Physics.Raycast(ray, out RaycastHit hit, layerMask))
         {
             var clickedObject = hit.collider.gameObject;

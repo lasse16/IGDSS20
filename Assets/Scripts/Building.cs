@@ -6,7 +6,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public GeneralBuildingStats GeneralBuildingStats;
-    [SerializeField] private WareHouse wareHouse;
+    public WareHouse wareHouse;
 
 
     [HideInInspector]
@@ -39,7 +39,6 @@ public class Building : MonoBehaviour
             TimeInCurrentGenerationCycle -= EffectiveGenerationTime;
             productionRunning = false;
         }
-
     }
 
 

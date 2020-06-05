@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public BuildingPrefabs Buildings; 
-    private RunTimeSet<Building> PlacedBuildings;
+    private List<Building> PlacedBuildings = new List<Building>();
 
 
     public int GetUpkeepCost()
@@ -24,6 +24,7 @@ public class BuildingManager : MonoBehaviour
         if (tileAllowed)
         {
             building.tile = tile;
+            building.gameObject.transform.position = tile.gameObject.transform.position;
             PlacedBuildings.Add(building);
         }
 

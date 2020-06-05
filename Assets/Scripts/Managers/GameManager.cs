@@ -49,13 +49,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    [ContextMenu("ForceEconomyTick")]
     private void TickEconomy()
     {
         // constant income
         moneyPool += 100;
         var upkeepCost = _buildingManager.GetUpkeepCost();
-        moneyPool = -upkeepCost;
+        moneyPool -= upkeepCost;
     }
 
     public void SpawnBuilding(Vector3 mousePosition)
@@ -63,18 +63,32 @@ public class GameManager : MonoBehaviour
         var wareHouse = GetComponent<WareHouse>();
         var tile = mouseManager.GetClickedTile(mousePosition);
 
+        if (tile is null)
+            return;
+
         //TODO Select bulding type
-        var requiredBuildingType = BuildingType.Fishery;
+        var requiredBuildingType = BuildingType.Lumberjack;
+
+
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
 
 
         var buildingScript = building.GetComponent<Building>();
-        var moneyAvailable = moneyPool > buildingScript.GeneralBuildingStats.BuildCostMoney;
 
-        if (moneyAvailable && wareHouse.GetResourceIfAvailable(ResourceType.Plank, buildingScript.GeneralBuildingStats.BuildCostPlanks))
+        var moneyAvailable = moneyPool >= buildingScript.GeneralBuildingStats.BuildCostMoney;
+        var resourceAvailable = wareHouse.GetResourceIfAvailable(ResourceType.Plank, buildingScript.GeneralBuildingStats.BuildCostPlanks);
+        var allowedTileType = buildingScript.GetSupportedTiles().Contains(tile.Type);
+
+        if (moneyAvailable && resourceAvailable && allowedTileType)
         {
             moneyPool -= buildingScript.GeneralBuildingStats.BuildCostMoney;
             _buildingManager.PlaceBuildingOnTile(buildingScript, tile);
+            buildingScript.wareHouse = wareHouse;
+        }
+        else
+        {
+            print($"Placement of building failed. allowed tile : {allowedTileType} , resources available {resourceAvailable} , money available {moneyAvailable}");
+            Destroy(building);
         }
     }
 }
