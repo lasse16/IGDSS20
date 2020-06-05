@@ -55,6 +55,9 @@ public class Building : MonoBehaviour
 
     private float CalculateEfficiency()
     {
+        if (GeneralBuildingStats.EfficientNeighboringTile == TileType.None)
+            return 1;
+
         int counter = 0;
         foreach (var item in tile.NeighbouringTiles)
         {
