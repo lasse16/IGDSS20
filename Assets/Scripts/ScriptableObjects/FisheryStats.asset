@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb8353b7395d454cad3b3d1f06e77a3, type: 3}
+  m_Name: FisheryStats
+  m_EditorClassIdentifier: 
+  BuildingType: 0
+  AllowedTileTypes: 02000000
+  UpkeepCost: 40
+  BuildCostMoney: 100
+  BuildCostPlanks: 2
+  MinEfficientNeigbor: 1
+  MaxEfficientNeighbor: 3
+  EfficientNeighboringTile: 1
+  InputResources: 
+  OutputResource: 0
+  OutputCount: 1
+  ResourceGenerationInterval: 30

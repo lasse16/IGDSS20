@@ -293,6 +293,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1768092941}
+        m_MethodName: SpawnBuilding
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   RightClickDrag:
     m_PersistentCalls:
       m_Calls:
@@ -427,6 +438,50 @@ Transform:
   m_Father: {fileID: 1457566343}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50.000004, y: -115.880005, z: 0}
+--- !u!1 &1416173821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416173822}
+  - component: {fileID: 1416173823}
+  m_Layer: 0
+  m_Name: BuildingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416173822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416173821}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.322563, y: -17.948624, z: 38.59925}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1589499994}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1416173823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416173821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f278c86b856282b45ae70ce8d863782b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Buildings: {fileID: 11400000, guid: 2dc0677a08c83a344980b490e4217884, type: 2}
 --- !u!1 &1457566342
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +545,7 @@ Transform:
   - {fileID: 834136087}
   - {fileID: 563056265}
   - {fileID: 1914028083}
+  - {fileID: 1416173822}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -503,6 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768092942}
   - component: {fileID: 1768092941}
+  - component: {fileID: 1768092943}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -527,7 +584,9 @@ MonoBehaviour:
   _heightmap: {fileID: 2800000, guid: 6c8b8b5dee9104b429f737ec1d927ec9, type: 3}
   _mapManager: {fileID: 1914028084}
   _tileSet: {fileID: 11400000, guid: 2ffc378e19e67f44aba431610b4ce1f4, type: 2}
+  _buildingManager: {fileID: 1416173823}
   AllowCameraAngleToInfluenceBoundaries: 0
+  moneyPool: 0
 --- !u!4 &1768092942
 Transform:
   m_ObjectHideFlags: 0
@@ -542,6 +601,18 @@ Transform:
   m_Father: {fileID: 1589499994}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768092943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768092940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208c6212686f9484288232a2484b11ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914028082
 GameObject:
   m_ObjectHideFlags: 0
