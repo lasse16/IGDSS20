@@ -60,7 +60,7 @@ public class BuildingManager : MonoBehaviour
                 prefab = Buildings.SchnappsDistillery;
                 break;
             default:
-                throw new Exception("Unknown building type");
+                throw new Exception($"Unknown building type - {Enum.GetName(typeof(BuildingType),type)}");
         }
 
         return Instantiate(prefab);
