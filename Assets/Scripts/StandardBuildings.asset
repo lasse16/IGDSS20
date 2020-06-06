@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9bd670e8999f348815e3e118ec1b77, type: 3}
   m_Name: StandardBuildings
   m_EditorClassIdentifier: 
-  Fishery: {fileID: 376914742584050882, guid: 8efb1b36941e6a042b168d80d5ab8ff7, type: 3}
+  Fishery: {fileID: 8377226442593032073, guid: 8efb1b36941e6a042b168d80d5ab8ff7, type: 3}
   LumberJack: {fileID: 8893346717362336099, guid: b48e673041fa7b043b1c48e1a5bc3a0b,
     type: 3}
-  Sawmill: {fileID: 0}
-  FrameworkKnitters: {fileID: 0}
-  SheepFarm: {fileID: 0}
-  PotatoFarm: {fileID: 0}
-  SchnappsDistillery: {fileID: 0}
+  Sawmill: {fileID: 7954026833542935850, guid: 8c3ce8c24f1f53749bf88c335a4f6dcf, type: 3}
+  FrameworkKnitters: {fileID: 3676779165740305128, guid: 76ac34a29f1120a45be75ec0ea8457c0,
+    type: 3}
+  SheepFarm: {fileID: 490618183450439593, guid: 60ea091899342994dbbe1311cdc9c8b7,
+    type: 3}
+  PotatoFarm: {fileID: 3684908983666292079, guid: 1fb2a3bd1fb05254589cf9fbf7d47bbd,
+    type: 3}
+  SchnappsDistillery: {fileID: 5825626107057179175, guid: f444867f518e99d4fa615693813f189c,
+    type: 3}
