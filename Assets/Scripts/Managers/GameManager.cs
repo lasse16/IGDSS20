@@ -60,19 +60,17 @@ public class GameManager : MonoBehaviour
 
     public void SpawnBuilding(Vector3 mousePosition)
     {
+        //TODO fix preconfigured ware house
         var wareHouse = GetComponent<WareHouse>();
         var tile = mouseManager.GetClickedTile(mousePosition);
 
         if (tile is null)
             return;
 
-        //TODO Select bulding type
-        var requiredBuildingType = BuildingType.Lumberjack;
+        var requiredBuildingType = _buildingManager.GetCurrentPlacementBuilding();
 
 
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
-
-
         var buildingScript = building.GetComponent<Building>();
 
         var moneyAvailable = moneyPool >= buildingScript.GeneralBuildingStats.BuildCostMoney;

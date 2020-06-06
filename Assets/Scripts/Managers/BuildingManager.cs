@@ -6,6 +6,7 @@ public class BuildingManager : MonoBehaviour
 {
     public BuildingPrefabs Buildings; 
     private List<Building> PlacedBuildings = new List<Building>();
+    private BuildingType _currentActivePlacement = BuildingType.Lumberjack;
 
 
     public int GetUpkeepCost()
@@ -65,4 +66,15 @@ public class BuildingManager : MonoBehaviour
 
         return Instantiate(prefab);
     }
+
+    //TODO find better solution
+    public void SetRequestedBuildingToLumberjack() => _currentActivePlacement = BuildingType.Lumberjack;
+    public void SetRequestedBuildingToFishery() => _currentActivePlacement = BuildingType.Fishery;
+    public void SetRequestedBuildingToSawmill() => _currentActivePlacement = BuildingType.Sawmill;
+    public void SetRequestedBuildingToFrameworkKnitter() => _currentActivePlacement = BuildingType.FrameworkKnitters;
+    public void SetRequestedBuildingToSheepfarm() => _currentActivePlacement = BuildingType.SheepFarm;
+    public void SetRequestedBuildingToPotatoFarm() => _currentActivePlacement = BuildingType.PotatoFarm;
+    public void SetRequestedBuildingToSchnappsDistillery() => _currentActivePlacement = BuildingType.SchnappsDistillery;
+    public BuildingType GetCurrentPlacementBuilding() => _currentActivePlacement;
+
 }
