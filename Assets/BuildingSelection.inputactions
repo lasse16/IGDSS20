@@ -1,0 +1,147 @@
+{
+    "name": "BuildingSelection",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "65617995-dadc-4ed5-8dd1-257dea148f07",
+            "actions": [
+                {
+                    "name": "SelectBuilding1",
+                    "type": "Button",
+                    "id": "391ee3f6-630c-4f58-b356-2477c97dab9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding2",
+                    "type": "Button",
+                    "id": "689255b9-c875-48d5-bc4c-aeaabd2a920c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding3",
+                    "type": "Button",
+                    "id": "fe56dcff-d22e-42fe-838c-89e97c06354f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding4",
+                    "type": "Button",
+                    "id": "d481bff4-3455-4e4f-83d9-7bc49ce21a8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding5",
+                    "type": "Button",
+                    "id": "08c49e3e-8ffd-452c-8f3e-5fe5ed8cc346",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding6",
+                    "type": "Button",
+                    "id": "a9103641-182d-41ca-b77d-208cb7d24bdf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding7",
+                    "type": "Button",
+                    "id": "2f764336-8ab4-461e-8a47-ef3ae609a491",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e861bb60-6a61-4a83-b559-dac64d3959dc",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5468d9bd-5e04-41b5-bfa8-9a82cd1aa589",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c7c3911-c020-41d5-bca9-468e31866fad",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a90d38a-7c41-415b-a02e-95ed7c3ee2a0",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17e9312c-e501-4a5c-b570-043a90c41191",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a976cd3c-91ce-4955-91ad-b6b1b8be4294",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84acb3a9-9105-4f39-ad75-20cb2b49fd67",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
