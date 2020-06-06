@@ -32,7 +32,7 @@ public class BuildingManager : MonoBehaviour
         return tileAllowed;
     }
 
-    public GameObject GetBuildingOfType(BuildingType type)
+    public Building GetBuildingOfType(BuildingType type)
     {
         GameObject prefab;
 
@@ -64,7 +64,8 @@ public class BuildingManager : MonoBehaviour
                 throw new Exception($"Unknown building type - {Enum.GetName(typeof(BuildingType),type)}");
         }
 
-        return Instantiate(prefab);
+        var obj =  Instantiate(prefab);
+        return obj.GetComponent<Building>();
     }
 
     //TODO find better solution

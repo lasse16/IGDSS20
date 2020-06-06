@@ -71,22 +71,21 @@ public class GameManager : MonoBehaviour
 
 
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
-        var buildingScript = building.GetComponent<Building>();
 
-        var moneyAvailable = moneyPool >= buildingScript.GeneralBuildingStats.BuildCostMoney;
-        var resourceAvailable = wareHouse.GetResourceIfAvailable(ResourceType.Plank, buildingScript.GeneralBuildingStats.BuildCostPlanks);
-        var allowedTileType = buildingScript.GetSupportedTiles().Contains(tile.Type);
+        var moneyAvailable = moneyPool >= building.GeneralBuildingStats.BuildCostMoney;
+        var resourceAvailable = wareHouse.GetResourceIfAvailable(ResourceType.Plank, building.GeneralBuildingStats.BuildCostPlanks);
+        var allowedTileType = building.GetSupportedTiles().Contains(tile.Type);
 
         if (moneyAvailable && resourceAvailable && allowedTileType)
         {
-            moneyPool -= buildingScript.GeneralBuildingStats.BuildCostMoney;
-            _buildingManager.PlaceBuildingOnTile(buildingScript, tile);
-            buildingScript.wareHouse = wareHouse;
+            moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
+            _buildingManager.PlaceBuildingOnTile(building, tile);
+            building.wareHouse = wareHouse;
         }
         else
         {
             print($"Placement of building failed. allowed tile : {allowedTileType} , resources available {resourceAvailable} , money available {moneyAvailable}");
-            Destroy(building);
+            Destroy(building.gameObject);
         }
     }
 }
