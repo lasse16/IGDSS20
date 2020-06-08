@@ -4,7 +4,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public GeneralBuildingStats GeneralBuildingStats;
-    public WareHouse WareHouse;
+    public IStorage WareHouse;
 
     [HideInInspector]
     public Tile tile;
