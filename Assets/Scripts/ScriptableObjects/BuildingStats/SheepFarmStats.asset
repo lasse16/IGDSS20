@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cb8353b7395d454cad3b3d1f06e77a3, type: 3}
+  m_Script: {fileID: 11500000, guid: a469d36898e938d45a84d4b8c6c9ee3e, type: 3}
   m_Name: SheepFarmStats
   m_EditorClassIdentifier: 
   BuildingType: 3
   AllowedTileTypes: 03000000
   UpkeepCost: 20
-  BuildCostMoney: 100
+  BuildCostMoney: 1000
   BuildCostPlanks: 2
   MinEfficientNeigbor: 1
   MaxEfficientNeighbor: 4
@@ -24,3 +24,4 @@ MonoBehaviour:
   OutputResource: 3
   OutputCount: 1
   ResourceGenerationInterval: 30
+  JobsAvailable: 10

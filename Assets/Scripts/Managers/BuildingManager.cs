@@ -7,7 +7,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
 {
     public BuildingPrefabs Buildings;
     private BuildingSelection _buildingSelection;
-    private List<Building> PlacedBuildings = new List<Building>();
+    private List<ProductionBuilding> PlacedBuildings = new List<ProductionBuilding>();
     private BuildingType _currentActivePlacement = BuildingType.Lumberjack;
 
 
@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         return total;
     }
 
-    public bool PlaceBuildingOnTile(Building building, Tile tile)
+    public bool PlaceBuildingOnTile(ProductionBuilding building, Tile tile)
     {
         var tileAllowed = building.GetSupportedTiles().Contains(tile.Type);
         if (tileAllowed)
@@ -50,7 +50,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         return tileAllowed;
     }
 
-    public Building GetBuildingOfType(BuildingType type)
+    public ProductionBuilding GetBuildingOfType(BuildingType type)
     {
         GameObject prefab;
 
@@ -83,7 +83,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         }
 
         var obj = Instantiate(prefab);
-        return obj.GetComponent<Building>();
+        return obj.GetComponent<ProductionBuilding>();
     }
 
     #region keyboard input handling
