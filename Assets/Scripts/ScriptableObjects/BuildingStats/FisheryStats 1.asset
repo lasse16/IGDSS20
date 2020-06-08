@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cb8353b7395d454cad3b3d1f06e77a3, type: 3}
-  m_Name: FrameworkKnittersStats
+  m_Script: {fileID: 11500000, guid: a469d36898e938d45a84d4b8c6c9ee3e, type: 3}
+  m_Name: FisheryStats 1
   m_EditorClassIdentifier: 
-  BuildingType: 4
-  AllowedTileTypes: 030000000400000005000000
-  UpkeepCost: 50
-  BuildCostMoney: 400
+  BuildingType: 0
+  AllowedTileTypes: 02000000
+  UpkeepCost: 40
+  BuildCostMoney: 100
   BuildCostPlanks: 2
-  MinEfficientNeigbor: 0
-  MaxEfficientNeighbor: 0
-  EfficientNeighboringTile: 0
-  InputResources: 03000000
-  OutputResource: 4
+  MinEfficientNeigbor: 1
+  MaxEfficientNeighbor: 3
+  EfficientNeighboringTile: 1
+  InputResources: 
+  OutputResource: 0
   OutputCount: 1
   ResourceGenerationInterval: 30
+  JobsAvailable: 25

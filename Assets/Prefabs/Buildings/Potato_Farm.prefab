@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4783553463201220913}
-  - component: {fileID: 7120305053034389184}
+  - component: {fileID: 8771657784321566854}
   m_Layer: 0
   m_Name: Potato_Farm
   m_TagString: Untagged
@@ -92,7 +92,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7120305053034389184
+--- !u!114 &8771657784321566854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,13 +101,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3684908983666292079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a1af14b7375fe449e639c784ecb7a3, type: 3}
+  m_Script: {fileID: 11500000, guid: db5345e7bcebd834ab10bef31fcc7d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GeneralBuildingStats: {fileID: 11400000, guid: 8261c13bfbe973f4989f24eefcaf8782,
+  GeneralBuildingStats: {fileID: 11400000, guid: a5af2517d2f6b264c8c9e62aa9f4b47d,
     type: 2}
-  wareHouse: {fileID: 0}
+  WareHouse: {fileID: 0}
   tile: {fileID: 0}
+  ProductionBuildingStats: {fileID: 11400000, guid: a5af2517d2f6b264c8c9e62aa9f4b47d,
+    type: 2}
 --- !u!1001 &567043491331808257
 PrefabInstance:
   m_ObjectHideFlags: 0

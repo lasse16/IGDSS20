@@ -10,5 +10,6 @@ public enum BuildingType
     SheepFarm, 
     FrameworkKnitters, 
     PotatoFarm, 
-    SchnappsDistillery 
+    SchnappsDistillery,
+    FarmersResidence,
 }

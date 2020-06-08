@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 456058115250513198}
-  - component: {fileID: 1332508983128786438}
+  - component: {fileID: 8611673469370881123}
   m_Layer: 0
   m_Name: Schnapps_Distillery
   m_TagString: Untagged
@@ -228,7 +228,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1332508983128786438
+--- !u!114 &8611673469370881123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,13 +237,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5825626107057179175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a1af14b7375fe449e639c784ecb7a3, type: 3}
+  m_Script: {fileID: 11500000, guid: db5345e7bcebd834ab10bef31fcc7d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GeneralBuildingStats: {fileID: 11400000, guid: bbaea93a8e742644b8f09795bd2ea0fb,
     type: 2}
-  wareHouse: {fileID: 0}
+  WareHouse: {fileID: 0}
   tile: {fileID: 0}
+  ProductionBuildingStats: {fileID: 11400000, guid: bbaea93a8e742644b8f09795bd2ea0fb,
+    type: 2}
 --- !u!1 &6653755689043370098
 GameObject:
   m_ObjectHideFlags: 0

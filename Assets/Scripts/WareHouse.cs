@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Assets.Scripts
 {
-    public class WareHouse : MonoBehaviour
+    public class WareHouse : MonoBehaviour, IStorage
     {
         private Dictionary<ResourceType, int> StockPile = new Dictionary<ResourceType, int>();
 
@@ -17,7 +17,7 @@ namespace Assets.Scripts
             }
         }
 
-        internal List<bool> GetResourcesIfAvailable(List<ResourceType> inputResources, List<int> quantities = null)
+        public List<bool> GetResourcesIfAvailable(List<ResourceType> inputResources, List<int> quantities = null)
         {
             if (quantities is null)
                 quantities = inputResources.Select(item => 1).ToList();
@@ -61,8 +61,8 @@ namespace Assets.Scripts
 
         public void AddResource(ResourceType res, int count)
         {
-            if(count < 0)
-                throw new ArgumentException($"Resource addition failed - resource{Enum.GetName(typeof(ResourceType),res)} count {count}");
+            if (count < 0)
+                throw new ArgumentException($"Resource addition failed - resource{Enum.GetName(typeof(ResourceType), res)} count {count}");
 
             StockPile[res] += count;
         }
