@@ -83,13 +83,13 @@ public class GameManager : MonoBehaviour
 
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
 
-        var moneyAvailable = moneyPool >= building.ProductionBuildingStats.BuildCostMoney;
-        var resourceAvailable = storage.GetResourceIfAvailable(ResourceType.Plank, building.ProductionBuildingStats.BuildCostPlanks);
-        var allowedTileType = building.GetSupportedTiles().Contains(tile.Type);
+        var moneyAvailable = moneyPool >= building.GeneralBuildingStats.BuildCostMoney;
+        var resourceAvailable = storage.GetResourceIfAvailable(ResourceType.Plank, building.GeneralBuildingStats.BuildCostPlanks);
+        var allowedTileType = building.GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
 
         if (moneyAvailable && resourceAvailable && allowedTileType)
         {
-            moneyPool -= building.ProductionBuildingStats.BuildCostMoney;
+            moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
             _buildingManager.PlaceBuildingOnTile(building, tile);
             building.WareHouse = storage;
         }

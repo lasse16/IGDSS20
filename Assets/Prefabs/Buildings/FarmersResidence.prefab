@@ -50,6 +50,8 @@ MonoBehaviour:
   tile: {fileID: 0}
   HousingBuildingStats: {fileID: 11400000, guid: ac86dfc3b1629614cb95132534350997,
     type: 2}
+  WorkerPrefab: {fileID: 5029717785576979174, guid: 05a08fc1486519d45baaf6834c922bfc,
+    type: 3}
 --- !u!1001 &2496640084286980787
 PrefabInstance:
   m_ObjectHideFlags: 0

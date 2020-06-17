@@ -7,7 +7,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
 {
     public BuildingPrefabs Buildings;
     private BuildingSelection _buildingSelection;
-    private List<ProductionBuilding> PlacedBuildings = new List<ProductionBuilding>();
+    private List<Building> PlacedBuildings = new List<Building>();
     private BuildingType _currentActivePlacement = BuildingType.Lumberjack;
 
 
@@ -32,14 +32,14 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         var total = 0;
         foreach (var building in PlacedBuildings)
         {
-            total += building.GetUpkeepCost();
+            total += building.GeneralBuildingStats.UpkeepCost;
         }
         return total;
     }
 
-    public bool PlaceBuildingOnTile(ProductionBuilding building, Tile tile)
+    public bool PlaceBuildingOnTile(Building building, Tile tile)
     {
-        var tileAllowed = building.GetSupportedTiles().Contains(tile.Type);
+        var tileAllowed = building.GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
         if (tileAllowed)
         {
             building.tile = tile;
@@ -50,7 +50,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         return tileAllowed;
     }
 
-    public ProductionBuilding GetBuildingOfType(BuildingType type)
+    public Building GetBuildingOfType(BuildingType type)
     {
         GameObject prefab;
 
@@ -78,12 +78,15 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
             case BuildingType.SchnappsDistillery:
                 prefab = Buildings.SchnappsDistillery;
                 break;
+            case BuildingType.FarmersResidence:
+                prefab = Buildings.FarmersResidence;
+                break;
             default:
                 throw new Exception($"Unknown building type - {Enum.GetName(typeof(BuildingType), type)}");
         }
 
         var obj = Instantiate(prefab);
-        return obj.GetComponent<ProductionBuilding>();
+        return obj.GetComponent<Building>();
     }
 
     #region keyboard input handling
@@ -97,6 +100,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
     public void SetRequestedBuildingToSheepfarm() => _currentActivePlacement = BuildingType.SheepFarm;
     public void SetRequestedBuildingToPotatoFarm() => _currentActivePlacement = BuildingType.PotatoFarm;
     public void SetRequestedBuildingToSchnappsDistillery() => _currentActivePlacement = BuildingType.SchnappsDistillery;
+    private void SetRequestedBuildingToFarmersResidence() => _currentActivePlacement = BuildingType.FarmersResidence;
 
     public void OnSelectBuilding1(InputAction.CallbackContext context) => SetRequestedBuildingToFishery();
     public void OnSelectBuilding2(InputAction.CallbackContext context) => SetRequestedBuildingToLumberjack();
@@ -105,6 +109,13 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
     public void OnSelectBuilding5(InputAction.CallbackContext context) => SetRequestedBuildingToFrameworkKnitter();
     public void OnSelectBuilding6(InputAction.CallbackContext context) => SetRequestedBuildingToPotatoFarm();
     public void OnSelectBuilding7(InputAction.CallbackContext context) => SetRequestedBuildingToSchnappsDistillery();
+
+    public void OnSelectBuilding8(InputAction.CallbackContext context) => SetRequestedBuildingToFarmersResidence();
+
+    public void OnSelectBuilding9(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
 
     #endregion
 }

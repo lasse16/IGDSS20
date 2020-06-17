@@ -24,3 +24,5 @@ MonoBehaviour:
     type: 3}
   SchnappsDistillery: {fileID: 5825626107057179175, guid: f444867f518e99d4fa615693813f189c,
     type: 3}
+  FarmersResidence: {fileID: 4916968841135837682, guid: 16c3219c70315f44381ee9a417522470,
+    type: 3}

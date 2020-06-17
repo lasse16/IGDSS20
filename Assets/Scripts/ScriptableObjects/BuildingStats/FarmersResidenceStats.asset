@@ -15,8 +15,8 @@ MonoBehaviour:
   BuildingType: 7
   AllowedTileTypes: 030000000400000005000000
   UpkeepCost: 0
-  BuildCostMoney: 10
-  BuildCostPlanks: 1
+  BuildCostMoney: 0
+  BuildCostPlanks: 0
   MaxInhabitants: 10
   StartingInhabitants: 2
   WorkerGenerationIntervalInSeconds: 30
