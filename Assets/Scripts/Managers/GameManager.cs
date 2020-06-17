@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MouseManager mouseManager;
     [SerializeField] private Texture2D _heightmap;
     [SerializeField] private MapManager _mapManager;
+    [SerializeField] private JobManager _jobManager;
     [SerializeField] private TileSet _tileSet;
     [SerializeField] private BuildingManager _buildingManager;
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     //TODO hardcoded for now
     private const int tickIntervalInSeconds = 60;
+    private const int taxRateEmployed = 5;
     private float timeSinceLastTick;
 
     void Start()
@@ -54,6 +56,14 @@ public class GameManager : MonoBehaviour
     {
         // constant income
         moneyPool += 100;
+
+        var taxesEmployed = _jobManager.GetAmountOfEmployedWorkers() * taxRateEmployed;
+        var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * 2;
+        var taxesRetiree = _jobManager.GetAmountOfRetirees() * 1;
+
+        var taxes = taxesEmployed + taxesRetiree + taxesUnemployed;
+        moneyPool += taxes;
+
         var upkeepCost = _buildingManager.GetUpkeepCost();
         moneyPool -= upkeepCost;
     }
@@ -68,6 +78,7 @@ public class GameManager : MonoBehaviour
             return;
 
         var requiredBuildingType = _buildingManager.GetCurrentPlacementBuilding();
+
 
 
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
