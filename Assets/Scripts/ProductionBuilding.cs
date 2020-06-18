@@ -11,14 +11,29 @@ public class ProductionBuilding : Building
     private float EffectiveGenerationTime;
     private bool productionRunning;
 
+
+    #region Manager References
+    JobManager _jobManager; //Reference to the JobManager
+    #endregion
+
+    #region Jobs
+    public List<Job> _jobs; // List of all available Jobs. Is populated in Start()
+    #endregion
+
     void Start()
     {
+        // register job vacancies at JobManager
+        RegisterJobs();
+
+        // TODO
+        // efficiency have to contain/ be affected by happiness and count of workers. 
         var efficiency = CalculateEfficiency();
         EffectiveGenerationTime = (1 / efficiency) * ProductionBuildingStats.ResourceGenerationInterval;
     }
 
     void Update()
     {
+        // TODO: update happiness and worker count efficiency. Former could be part of building
 
         if (!productionRunning)
         {
@@ -64,6 +79,7 @@ public class ProductionBuilding : Building
     }
 
 
+
     public int GetUpkeepCost()
     {
         return ProductionBuildingStats.UpkeepCost;
@@ -72,5 +88,19 @@ public class ProductionBuilding : Building
     public List<TileType> GetSupportedTiles()
     {
         return ProductionBuildingStats.AllowedTileTypes;
+    }
+
+
+    /*
+     * register available jobs at JobManager
+     */ 
+    public void registerJobs()
+    {
+        for(int i = 1; 1 > ProductionBuildingStats.JobsAvailable; i++)
+        {
+            _jobs.Add(new Job(this));
+        };
+
+        _jobManager.registerAvailableJobs(_jobs);
     }
 }
