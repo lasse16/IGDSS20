@@ -36,7 +36,7 @@ public class HousingBuilding : Building
 
         var worker = Instantiate(WorkerPrefab);
         var script = worker.GetComponent<Worker>();
-        script.Home = this;
+        script.Setup(this);
         _inhabitants.Add(script);
     }
 

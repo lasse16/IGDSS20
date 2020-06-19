@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     //TODO hardcoded for now
     private const int tickIntervalInSeconds = 60;
     private const int taxRateEmployed = 5;
+    private const int taxRateUnemployed = 2;
+    private const int taxRateRetiree = 1;
     private float timeSinceLastTick;
 
     void Start()
@@ -58,8 +60,8 @@ public class GameManager : MonoBehaviour
         moneyPool += 100;
 
         var taxesEmployed = _jobManager.GetAmountOfEmployedWorkers() * taxRateEmployed;
-        var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * 2;
-        var taxesRetiree = _jobManager.GetAmountOfRetirees() * 1;
+        var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * taxRateUnemployed;
+        var taxesRetiree = _jobManager.AmountOfRetirees * taxRateRetiree;
 
         var taxes = taxesEmployed + taxesRetiree + taxesUnemployed;
         moneyPool += taxes;

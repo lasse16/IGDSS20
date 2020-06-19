@@ -10,11 +10,13 @@ namespace Assets.Scripts
 {
     public class Worker : MonoBehaviour
     {
+        [SerializeField] private WorkerEvent Birth;
         [SerializeField] private WorkerEvent ComingOfAge;
         [SerializeField] private WorkerEvent Retiring;
         [SerializeField] private WorkerEvent Death;
 
         public HousingBuilding Home;
+        public ProductionBuilding Workplace;
 
         [SerializeField] private List<ResourceType> RequiredResources;
         [Range(0, float.MaxValue)]
@@ -28,12 +30,23 @@ namespace Assets.Scripts
         private const float resourceRequestIntervalInSeconds = 60;
         private float timeSinceLastResourceRequest;
 
-
         private HashSet<ResourceType> _missingResources;
-        private void Awake()
+
+        private void OnEnable()
         {
             RequestAllResources();
+        }
 
+        public void Setup(HousingBuilding home)
+        {
+            Home = home;
+
+            _age = 0;
+            _happiness = 0;
+            timeSinceLastAgeIncrease = 0;
+            timeSinceLastResourceRequest = 0;
+            
+            Birth.Invoke(this);
         }
 
         private void Update()
@@ -59,6 +72,11 @@ namespace Assets.Scripts
             CalculateRessourceHappiness(_missingResources.ToList());
         }
 
+        internal void Employ(ProductionBuilding building)
+        {
+            Workplace = building;
+        }
+
         private void RequestAllResources()
         {
             _missingResources = new HashSet<ResourceType>(RequiredResources);
@@ -82,7 +100,8 @@ namespace Assets.Scripts
             }
         }
 
-        public float GetHappiness() => _happiness;
+        public float GetHappiness
+            () => _happiness;
 
         //TODO Extract Happiness calculator
         //Move this out and include a list with ratio, so happiness can be made up of different components,
@@ -108,5 +127,14 @@ namespace Assets.Scripts
                 }
             }
         }
+
+        public void Kill(Worker worker)
+        {
+            Destroy(gameObject);
+        }
+
+        [ContextMenu("GrowUp")]
+        public void AgeIncrease() => _age = 14;
+
     }
 }
