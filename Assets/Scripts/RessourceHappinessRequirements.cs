@@ -21,6 +21,7 @@ public class RessourceHappinessRequirements : MonoBehaviour, IHappinessRequireme
 
     private void Awake()
     {
+        //TODO MANDATORY Create better storage lookup
         var gameManager = GameObject.Find("GameManager");
         Storage = gameManager.GetComponent<IStorage>();
     }

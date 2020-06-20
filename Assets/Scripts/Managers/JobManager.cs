@@ -25,7 +25,7 @@ public class JobManager : MonoBehaviour
         if (_freeJobs.Count > 0 && GetAmountOfUnemployedWorkers() > 0)
         {
             foreach (var worker in _unemployedWorkers)
-                    TryEmployWorker(worker);
+                TryEmployWorker(worker);
         }
     }
 
