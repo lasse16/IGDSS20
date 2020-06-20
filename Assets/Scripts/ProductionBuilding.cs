@@ -34,7 +34,7 @@ public class ProductionBuilding : Building
 
         if (TimeInCurrentGenerationCycle >= EffectiveGenerationTime)
         {
-            WareHouse.AddResource(ProductionBuildingStats.OutputResource, ProductionBuildingStats.OutputCount);
+            Storage.AddResource(ProductionBuildingStats.OutputResource, ProductionBuildingStats.OutputCount);
             TimeInCurrentGenerationCycle -= EffectiveGenerationTime;
             productionRunning = false;
         }
@@ -44,7 +44,7 @@ public class ProductionBuilding : Building
     private void TryStartProduction()
     {
 
-        var inputResources = WareHouse.GetResourcesIfAvailable(ProductionBuildingStats.InputResources);
+        var inputResources = Storage.GetResourcesIfAvailable(ProductionBuildingStats.InputResources);
         bool allResourcesAvaiable = inputResources.Contains(false);
 
         productionRunning = allResourcesAvaiable;
@@ -57,7 +57,7 @@ public class ProductionBuilding : Building
             return 1;
 
         int counter = 0;
-        foreach (var item in tile.NeighbouringTiles)
+        foreach (var item in Tile.NeighbouringTiles)
         {
             if (item.Type == ProductionBuildingStats.EfficientNeighboringTile)
                 counter++;
@@ -85,7 +85,6 @@ public class ProductionBuilding : Building
             Jobs = jobs;
             _jobTracker.RegisterJobs(Jobs);
         }
-
 
         return tileAllowed;
     }

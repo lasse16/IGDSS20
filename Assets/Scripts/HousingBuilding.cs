@@ -31,6 +31,8 @@ public class HousingBuilding : Building
             return;
 
         var worker = Instantiate(WorkerPrefab);
+        worker.transform.SetParent(transform);
+
         var script = worker.GetComponent<Worker>();
         script.Setup(this);
         _inhabitants.Add(script);
@@ -70,15 +72,7 @@ public class HousingBuilding : Building
 
     public void RemoveWorker(Worker worker)
     {
-        //Use exception to avoid checking 'contains' for every worker
-        try
-        {
-            _inhabitants.Remove(worker);
-        }
-        catch (ArgumentException)
-        {
-            return;
-        }
+        _inhabitants.Remove(worker);
     }
 
     public override bool ConstructOnTile(Tile tile, IStorage storage)
