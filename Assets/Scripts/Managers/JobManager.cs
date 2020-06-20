@@ -16,7 +16,7 @@ public class JobManager : MonoBehaviour
     private void Awake()
     {
         _population.WorkerComingOfAge.AddListener(TrackWorker);
-        _population.WorkerRetiring.AddListener(FreeOccupiedJob);
+        _population.WorkerRetiring.AddListener(RetireWorker);
         _population.WorkerDeath.AddListener(FreeOccupiedJob);
     }
 
@@ -29,7 +29,7 @@ public class JobManager : MonoBehaviour
         }
     }
 
-    public int AmountOfRetirees => _population.GetRetirees().Count;
+    public int GetAmountOfRetirees() => _population.GetRetirees().Count;
     public int GetAmountOfEmployedWorkers() => _workplaces.Count;
     public int GetAmountOfUnemployedWorkers() => _unemployedWorkers.Count;
 
@@ -110,4 +110,22 @@ public class JobManager : MonoBehaviour
         }
     }
 
+    private void RetireWorker(Worker worker)
+    {
+        if (HasJob(worker))
+        {
+            FreeJob(worker);
+        }
+        else
+            _unemployedWorkers.Remove(worker);
+    }
+
+    [ContextMenu("PrintWorkers")]
+    private void PrintWorkers()
+    {
+        foreach (var item in _workplaces)
+        {
+            print(item);
+        }
+    }
 }

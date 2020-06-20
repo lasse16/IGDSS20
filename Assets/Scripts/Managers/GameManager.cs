@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
         var taxesEmployed = _jobManager.GetAmountOfEmployedWorkers() * taxRateEmployed;
         var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * taxRateUnemployed;
-        var taxesRetiree = _jobManager.AmountOfRetirees * taxRateRetiree;
+        var taxesRetiree = _jobManager.GetAmountOfRetirees() * taxRateRetiree;
 
         var taxes = taxesEmployed + taxesRetiree + taxesUnemployed;
         moneyPool += taxes;
