@@ -25,11 +25,6 @@ namespace Assets.Scripts
         private const float ageIntervalInSeconds = 15;
         private float timeSinceLastAgeIncrease;
 
-        private void OnEnable()
-        {
-            _happinessRequirements = GetComponents<IHappinessRequirement>().ToList();
-        }
-
         public float GetHappiness() => _happiness;
 
         public void Kill(Worker worker)
@@ -49,6 +44,7 @@ namespace Assets.Scripts
             _age = 0;
             _happiness = 0;
             timeSinceLastAgeIncrease = 0;
+            _happinessRequirements = GetComponents<IHappinessRequirement>().ToList();
 
             Birth.Invoke(this);
         }
