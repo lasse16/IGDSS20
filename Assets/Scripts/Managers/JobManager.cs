@@ -1,16 +1,15 @@
 ﻿using Assets.Scripts;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class JobManager : MonoBehaviour
+public partial class JobManager : MonoBehaviour
 {
     [SerializeField] private PopulationSet _population;
+    [SerializeField] private JobTracker _freeJobs;
 
-    private readonly Dictionary<ProductionBuilding, int> _freeJobs = new Dictionary<ProductionBuilding, int>();
-    private readonly Dictionary<Worker, ProductionBuilding> _workplaces = new Dictionary<Worker, ProductionBuilding>();
+    private readonly List<Job> _workplaces = new List<Job>();
     [SerializeField] [ReadOnly] private List<Worker> _unemployedWorkers = new List<Worker>();
 
     private void Awake()
@@ -22,7 +21,7 @@ public class JobManager : MonoBehaviour
 
     private void Update()
     {
-        if (_freeJobs.Count > 0 && GetAmountOfUnemployedWorkers() > 0)
+        if (_freeJobs.JobsAvailable && GetAmountOfUnemployedWorkers() > 0)
         {
             foreach (var worker in _unemployedWorkers)
                 TryEmployWorker(worker);
@@ -44,63 +43,52 @@ public class JobManager : MonoBehaviour
 
     public bool TryEmployWorker(Worker worker)
     {
-        if (!(_freeJobs.Count > 0))
+        if (!_freeJobs.JobsAvailable)
             return false;
 
         //TODO OPTIONAL Priority system
         //Implement priority system for work place finding
-        var job = _freeJobs.First();
-        var building = job.Key;
-        var quantity = job.Value;
-        quantity -= 1;
+        var job = _freeJobs.GetRandomJob();
+        _freeJobs.Remove(job);
+        var building = job.Workplace;
 
-        _workplaces.Add(worker, building);
+        _workplaces.Add(job);
         worker.Employ(building);
-
-        if (quantity == 0)
-            _freeJobs.Remove(building);
-        else
-            _freeJobs[building] = quantity;
 
         return true;
     }
 
-    public void RegisterJobs(ProductionBuilding building, int quantity)
-    {
-        if (!_freeJobs.ContainsKey(building))
-        {
-            _freeJobs.Add(building, default);
-        }
-        _freeJobs[building] = quantity;
-    }
 
     public void RemoveJobs(ProductionBuilding building)
     {
-        if (_freeJobs.ContainsKey(building))
-            _freeJobs.Remove(building);
+        _freeJobs.RemoveJobs(building);
 
         foreach (var worker in _workplaces)
         {
-            if (worker.Value == building)
+            if (worker.Workplace == building)
             {
-                _workplaces.Remove(worker.Key);
-                _unemployedWorkers.Add(worker.Key);
+                _workplaces.Remove(worker);
+                _unemployedWorkers.Add(worker.Worker);
             }
         }
     }
 
     private void FreeJob(Worker worker)
     {
-        var job = _workplaces[worker];
-        _workplaces.Remove(worker);
-
-        if (!_freeJobs.ContainsKey(job))
-            _freeJobs.Add(job, 0);
-
-        _freeJobs[job] += 1;
+        var job = _workplaces.Find(x => x.Worker == worker);
+        _workplaces.Remove(job);
+        _freeJobs.Add(job);
     }
 
-    private bool HasJob(Worker worker) => _workplaces.ContainsKey(worker);
+    private bool HasJob(Worker worker)
+    {
+        foreach (var item in _workplaces)
+        {
+            if (worker == item.Worker)
+                return true;
+        }
+        return false;
+    }
 
     private void FreeOccupiedJob(Worker worker)
     {
@@ -129,3 +117,5 @@ public class JobManager : MonoBehaviour
         }
     }
 }
+
+

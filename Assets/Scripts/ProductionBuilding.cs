@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class ProductionBuilding : Building
 {
-    public  ProductionBuildingStats ProductionBuildingStats;
+    public ProductionBuildingStats ProductionBuildingStats;
+    public List<Job> Jobs;
+
+    [SerializeField] private JobTracker _jobTracker;
 
     private float TimeInCurrentGenerationCycle;
     private float EffectiveGenerationTime;
     private bool productionRunning;
+
 
     void Start()
     {
