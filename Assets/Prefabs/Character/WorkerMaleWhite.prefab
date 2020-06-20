@@ -1379,6 +1379,8 @@ GameObject:
   - component: {fileID: 5029717785576671574}
   - component: {fileID: 5029717785569415748}
   - component: {fileID: 67714501511176806}
+  - component: {fileID: -990459995798090975}
+  - component: {fileID: -9103922137421012846}
   m_Layer: 0
   m_Name: WorkerMaleWhite
   m_TagString: Untagged
@@ -1535,10 +1537,35 @@ MonoBehaviour:
         m_CallState: 2
   Home: {fileID: 0}
   Workplace: {fileID: 0}
-  Population: {fileID: 11400000, guid: 4096f4c61e9ed8949822f92308326e36, type: 2}
-  RequiredResources: 00000000040000000500000006000000
   _age: 0
   _happiness: 0
+--- !u!114 &-990459995798090975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029717785576979174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3ca17ac2671734a8b0dbbdd724e78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requiredRessources: 00000000040000000600000005000000
+  _importance: 9
+--- !u!114 &-9103922137421012846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5029717785576979174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c29c7e2dc976141b02756bc13fbf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 1
 --- !u!1 &5029717785576982086
 GameObject:
   m_ObjectHideFlags: 0
