@@ -1,5 +1,6 @@
 ﻿
 using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,8 +16,14 @@ public class RessourceHappinessRequirements : MonoBehaviour, IHappinessRequireme
     private const float _resourceRequestIntervalInSeconds = 60;
     private float _timeSinceLastResourceRequest;
 
-    private HashSet<ResourceType> _missingResources;
+    private HashSet<ResourceType> _missingResources = new HashSet<ResourceType>();
     private int _fulfillment;
+
+    private void Awake()
+    {
+        var gameManager = GameObject.Find("GameManager");
+        Storage = gameManager.GetComponent<IStorage>();
+    }
 
     private void Update()
     {
@@ -44,6 +51,8 @@ public class RessourceHappinessRequirements : MonoBehaviour, IHappinessRequireme
 
     private void CalculateRessourceHappiness(List<ResourceType> resources)
     {
+        _ = resources ?? throw new ArgumentException();
+
         foreach (var item in resources)
         {
             var happinessChange = 1 / _requiredRessources.Count;
