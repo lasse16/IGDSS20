@@ -37,17 +37,9 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
         return total;
     }
 
-    public bool PlaceBuildingOnTile(Building building, Tile tile)
+    public void AddPlacedBuilding(Building building)
     {
-        var tileAllowed = building.GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
-        if (tileAllowed)
-        {
-            building.tile = tile;
-            building.gameObject.transform.position = tile.gameObject.transform.position;
-            PlacedBuildings.Add(building);
-        }
-
-        return tileAllowed;
+        PlacedBuildings.Add(building);
     }
 
     public Building GetBuildingOfType(BuildingType type)

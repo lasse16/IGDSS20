@@ -11,7 +11,7 @@ public class HousingBuilding : Building
     public HousingBuildingStats HousingBuildingStats;
     //TODO Make better -> pool
     public GameObject WorkerPrefab;
-    private List<Worker> _inhabitants;
+    private List<Worker> _inhabitants = new List<Worker>();
 
     private float _efficency;
     private float _timeInGenerationInterval;
@@ -19,10 +19,6 @@ public class HousingBuilding : Building
 
     private void Start()
     {
-        _inhabitants = new List<Worker>();
-
-        for (int i = 0; i < HousingBuildingStats.StartingInhabitants; i++)
-            AddWorker();
 
 
         _efficency = CalculateEfficiency();
@@ -85,4 +81,18 @@ public class HousingBuilding : Building
         }
     }
 
+    public override bool ConstructOnTile(Tile tile, IStorage storage)
+    {
+        if (!GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type))
+            return false;
+
+        for (int i = 0; i < HousingBuildingStats.StartingInhabitants; i++)
+            AddWorker();
+
+        Tile = tile;
+        Storage = storage;
+        gameObject.transform.position = tile.gameObject.transform.position;
+
+        return true;
+    }
 }

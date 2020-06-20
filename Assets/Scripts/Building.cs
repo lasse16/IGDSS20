@@ -1,13 +1,16 @@
 ﻿using Assets.Scripts;
+using System;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     public GeneralBuildingStats GeneralBuildingStats;
-    public IStorage WareHouse;
+    public IStorage Storage;
 
     [HideInInspector]
-    public Tile tile;
+    public Tile Tile;
+
+    public abstract bool ConstructOnTile(Tile tile, IStorage storage);
 
 }
 

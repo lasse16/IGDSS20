@@ -62,4 +62,27 @@ public class ProductionBuilding : Building
         var efficiency = (counter - ProductionBuildingStats.MinEfficientNeigbor) / (ProductionBuildingStats.MaxEfficientNeighbor - ProductionBuildingStats.MinEfficientNeigbor);
         return Mathf.Clamp(efficiency, 0, 1);
     }
+
+    public override bool ConstructOnTile(Tile tile, IStorage storage)
+    {
+        var tileAllowed = GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
+        if (tileAllowed)
+        {
+            Tile = tile;
+            Storage = storage;
+            gameObject.transform.position = tile.gameObject.transform.position;
+
+            var jobs = new List<Job>();
+            for (int i = 0; i < ProductionBuildingStats.JobsAvailable; i++)
+            {
+                jobs.Add(new Job(this));
+            }
+
+            Jobs = jobs;
+            _jobTracker.RegisterJobs(Jobs);
+        }
+
+
+        return tileAllowed;
+    }
 }
