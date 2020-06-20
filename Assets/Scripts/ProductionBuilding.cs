@@ -1,24 +1,24 @@
 ﻿using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class ProductionBuilding : Building
+public class ProductionBuilding : EffiencyBuilding, IOccupiedBuilding
 {
     public ProductionBuildingStats ProductionBuildingStats;
     public List<Job> Jobs;
 
     [SerializeField] private JobTracker _jobTracker;
 
+
     private float TimeInCurrentGenerationCycle;
-    private float EffectiveGenerationTime;
     private bool productionRunning;
 
 
     void Start()
     {
-        var efficiency = CalculateEfficiency();
-        EffectiveGenerationTime = (1 / efficiency) * ProductionBuildingStats.ResourceGenerationInterval;
+        _effectiveGenerationInterval = CalculateEffectiveInterval(ProductionBuildingStats.ResourceGenerationInterval);
     }
 
     void Update()
@@ -32,10 +32,13 @@ public class ProductionBuilding : Building
 
         TimeInCurrentGenerationCycle += Time.deltaTime;
 
-        if (TimeInCurrentGenerationCycle >= EffectiveGenerationTime)
+        if (TimeInCurrentGenerationCycle >= _effectiveGenerationInterval)
         {
             Storage.AddResource(ProductionBuildingStats.OutputResource, ProductionBuildingStats.OutputCount);
-            TimeInCurrentGenerationCycle -= EffectiveGenerationTime;
+            TimeInCurrentGenerationCycle -= _effectiveGenerationInterval;
+            
+            _effectiveGenerationInterval = CalculateEffectiveInterval(ProductionBuildingStats.ResourceGenerationInterval);
+
             productionRunning = false;
         }
     }
@@ -48,23 +51,6 @@ public class ProductionBuilding : Building
         bool allResourcesAvaiable = inputResources.Contains(false);
 
         productionRunning = allResourcesAvaiable;
-    }
-
-
-    private float CalculateEfficiency()
-    {
-        if (ProductionBuildingStats.EfficientNeighboringTile == TileType.None)
-            return 1;
-
-        int counter = 0;
-        foreach (var item in Tile.NeighbouringTiles)
-        {
-            if (item.Type == ProductionBuildingStats.EfficientNeighboringTile)
-                counter++;
-        }
-
-        var efficiency = (counter - ProductionBuildingStats.MinEfficientNeigbor) / (ProductionBuildingStats.MaxEfficientNeighbor - ProductionBuildingStats.MinEfficientNeigbor);
-        return Mathf.Clamp(efficiency, 0, 1);
     }
 
     public override bool ConstructOnTile(Tile tile, IStorage storage)
@@ -86,6 +72,13 @@ public class ProductionBuilding : Building
             _jobTracker.RegisterJobs(Jobs);
         }
 
+        _efficiencyRequirements = GetComponents<IEfficiencyRequirement>().ToList();
+
         return tileAllowed;
+    }
+
+    public List<Worker> GetOccupants()
+    {
+        return Jobs.Select(x => x.Worker).Where(x => !(x is null)).ToList();
     }
 }

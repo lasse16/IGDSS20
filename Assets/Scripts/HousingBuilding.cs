@@ -6,23 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class HousingBuilding : Building
+public class HousingBuilding : EffiencyBuilding, IOccupiedBuilding
 {
     public HousingBuildingStats HousingBuildingStats;
     //TODO Make better -> pool
     public GameObject WorkerPrefab;
     private List<Worker> _inhabitants = new List<Worker>();
 
-    private float _efficency;
     private float _timeInGenerationInterval;
-    private float _effectiveGenerationinterval;
 
     private void Start()
     {
-
-
-        _efficency = CalculateEfficiency();
-        _effectiveGenerationinterval = CalculateEffectiveInterval();
+        _effectiveGenerationInterval = CalculateEffectiveInterval(HousingBuildingStats.WorkerGenerationIntervalInSeconds);
     }
 
     private void AddWorker()
@@ -38,37 +33,19 @@ public class HousingBuilding : Building
         _inhabitants.Add(script);
     }
 
-    private float CalculateEffectiveInterval()
-    {
-        return (1 / _efficency) * HousingBuildingStats.WorkerGenerationIntervalInSeconds;
-    }
-
     private void Update()
     {
         _timeInGenerationInterval += Time.deltaTime;
-        if (_timeInGenerationInterval > _effectiveGenerationinterval)
+        if (_timeInGenerationInterval > _effectiveGenerationInterval)
         {
-            _timeInGenerationInterval -= _effectiveGenerationinterval;
+            _timeInGenerationInterval -= _effectiveGenerationInterval;
 
             AddWorker();
 
-            _efficency = CalculateEfficiency();
-            _effectiveGenerationinterval = CalculateEffectiveInterval();
+            _effectiveGenerationInterval = CalculateEffectiveInterval(HousingBuildingStats.WorkerGenerationIntervalInSeconds);
         }
     }
 
-
-
-
-    private float CalculateEfficiency()
-    {
-        var totalHappiness = 0f;
-        foreach (var worker in _inhabitants)
-        {
-            totalHappiness += worker.GetHappiness();
-        }
-        return totalHappiness / _inhabitants.Count;
-    }
 
     public void RemoveWorker(Worker worker)
     {
@@ -86,7 +63,11 @@ public class HousingBuilding : Building
         Tile = tile;
         Storage = storage;
         gameObject.transform.position = tile.gameObject.transform.position;
+        _efficiencyRequirements = GetComponents<IEfficiencyRequirement>().ToList();
 
         return true;
     }
+
+    public List<Worker> GetOccupants() => _inhabitants;
+
 }
