@@ -68,5 +68,14 @@ namespace IGDSS20.Buildings
             StockPile[res] += count;
         }
 
+        [ContextMenu("PrintStockPile")]
+        private void PrintStockPile()
+        {
+            foreach (var item in StockPile)
+            {
+                print($"{Enum.GetName(typeof(ResourceType),item.Key)} : {item.Value}");
+            }
+        }
+
     }
 }

@@ -12,8 +12,8 @@ public partial class JobManager : MonoBehaviour
     [SerializeField] private PopulationSet _population;
     [SerializeField] private JobTracker _freeJobs;
 
-    [SerializeField] [ReadOnly] private List<Job> _workplaces = new List<Job>();
-    [SerializeField] [ReadOnly] private List<Worker> _unemployedWorkers = new List<Worker>();
+    [SerializeField] private List<Job> _workplaces = new List<Job>();
+    [SerializeField] private List<Worker> _unemployedWorkers = new List<Worker>();
 
     private void Awake()
     {
