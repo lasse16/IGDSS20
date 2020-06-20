@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts
 {
@@ -22,9 +18,8 @@ namespace Assets.Scripts
 
 
 
-        [Range(0, float.MaxValue)]
         [SerializeField] private int _age;
-        [Range(0, float.MaxValue)]
+        [Range(0, 1)]
         [SerializeField] private float _happiness;
 
         private const float ageIntervalInSeconds = 15;
@@ -34,6 +29,18 @@ namespace Assets.Scripts
         {
             _happinessRequirements = GetComponents<IHappinessRequirement>().ToList();
         }
+
+        public float GetHappiness() => _happiness;
+
+        public void Kill(Worker worker)
+        {
+            Destroy(gameObject);
+        }
+
+        [ContextMenu("GrowUp")]
+        public void AgeIncrease() => _age = 14;
+        public void Employ(ProductionBuilding building) => Workplace = building;
+
 
         public void Setup(HousingBuilding home)
         {
@@ -50,8 +57,6 @@ namespace Assets.Scripts
         {
             timeSinceLastAgeIncrease += Time.deltaTime;
 
-            //TODO Extract time based method call
-            //Maybe check out InvokeRepeating()
             if (timeSinceLastAgeIncrease > ageIntervalInSeconds)
             {
                 _age++;
@@ -83,10 +88,6 @@ namespace Assets.Scripts
             return total / totalImportance;
         }
 
-        internal void Employ(ProductionBuilding building)
-        {
-            Workplace = building;
-        }
 
         private void CheckAge(int age)
         {
@@ -105,16 +106,5 @@ namespace Assets.Scripts
                     break;
             }
         }
-
-        public float GetHappiness() => _happiness;
-
-        public void Kill(Worker worker)
-        {
-            Destroy(gameObject);
-        }
-
-        [ContextMenu("GrowUp")]
-        public void AgeIncrease() => _age = 14;
-
     }
 }
