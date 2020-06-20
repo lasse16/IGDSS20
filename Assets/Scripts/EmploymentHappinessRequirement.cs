@@ -15,7 +15,7 @@ public class EmploymentHappinessRequirement : MonoBehaviour, IHappinessRequireme
 
     public float CheckFulfillment()
     {
-        var employed = _worker.Workplace is null;
+        var employed = !(_worker.Workplace is null);
         return employed ? 1 : 0;
     }
 
