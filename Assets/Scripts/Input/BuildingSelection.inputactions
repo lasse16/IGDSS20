@@ -60,6 +60,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding8",
+                    "type": "Button",
+                    "id": "e76837dc-6183-45e4-a448-d8d98e499dab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectBuilding9",
+                    "type": "Button",
+                    "id": "5d8c7962-763d-42c6-99ea-fc86909cd726",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -137,6 +153,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectBuilding7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "080f975d-24c3-452c-ac65-e35156912817",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "317a44cc-dde3-4fc0-89ee-4966668c4b57",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuilding9",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -62,15 +62,4 @@ public class ProductionBuilding : Building
         var efficiency = (counter - ProductionBuildingStats.MinEfficientNeigbor) / (ProductionBuildingStats.MaxEfficientNeighbor - ProductionBuildingStats.MinEfficientNeigbor);
         return Mathf.Clamp(efficiency, 0, 1);
     }
-
-
-    public int GetUpkeepCost()
-    {
-        return ProductionBuildingStats.UpkeepCost;
-    }
-
-    public List<TileType> GetSupportedTiles()
-    {
-        return ProductionBuildingStats.AllowedTileTypes;
-    }
 }

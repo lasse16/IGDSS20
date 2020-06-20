@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/BuildingSelection.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/BuildingSelection.inputactions'
 
 using System;
 using System.Collections;
@@ -70,6 +70,22 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
                     ""name"": ""SelectBuilding7"",
                     ""type"": ""Button"",
                     ""id"": ""2f764336-8ab4-461e-8a47-ef3ae609a491"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectBuilding8"",
+                    ""type"": ""Button"",
+                    ""id"": ""e76837dc-6183-45e4-a448-d8d98e499dab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectBuilding9"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d8c7962-763d-42c6-99ea-fc86909cd726"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -152,6 +168,28 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
                     ""action"": ""SelectBuilding7"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""080f975d-24c3-452c-ac65-e35156912817"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectBuilding8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""317a44cc-dde3-4fc0-89ee-4966668c4b57"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectBuilding9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -167,6 +205,8 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
         m_Gameplay_SelectBuilding5 = m_Gameplay.FindAction("SelectBuilding5", throwIfNotFound: true);
         m_Gameplay_SelectBuilding6 = m_Gameplay.FindAction("SelectBuilding6", throwIfNotFound: true);
         m_Gameplay_SelectBuilding7 = m_Gameplay.FindAction("SelectBuilding7", throwIfNotFound: true);
+        m_Gameplay_SelectBuilding8 = m_Gameplay.FindAction("SelectBuilding8", throwIfNotFound: true);
+        m_Gameplay_SelectBuilding9 = m_Gameplay.FindAction("SelectBuilding9", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -223,6 +263,8 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_SelectBuilding5;
     private readonly InputAction m_Gameplay_SelectBuilding6;
     private readonly InputAction m_Gameplay_SelectBuilding7;
+    private readonly InputAction m_Gameplay_SelectBuilding8;
+    private readonly InputAction m_Gameplay_SelectBuilding9;
     public struct GameplayActions
     {
         private @BuildingSelection m_Wrapper;
@@ -234,6 +276,8 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
         public InputAction @SelectBuilding5 => m_Wrapper.m_Gameplay_SelectBuilding5;
         public InputAction @SelectBuilding6 => m_Wrapper.m_Gameplay_SelectBuilding6;
         public InputAction @SelectBuilding7 => m_Wrapper.m_Gameplay_SelectBuilding7;
+        public InputAction @SelectBuilding8 => m_Wrapper.m_Gameplay_SelectBuilding8;
+        public InputAction @SelectBuilding9 => m_Wrapper.m_Gameplay_SelectBuilding9;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +308,12 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
                 @SelectBuilding7.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding7;
                 @SelectBuilding7.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding7;
                 @SelectBuilding7.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding7;
+                @SelectBuilding8.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding8;
+                @SelectBuilding8.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding8;
+                @SelectBuilding8.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding8;
+                @SelectBuilding9.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding9;
+                @SelectBuilding9.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding9;
+                @SelectBuilding9.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectBuilding9;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -289,6 +339,12 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
                 @SelectBuilding7.started += instance.OnSelectBuilding7;
                 @SelectBuilding7.performed += instance.OnSelectBuilding7;
                 @SelectBuilding7.canceled += instance.OnSelectBuilding7;
+                @SelectBuilding8.started += instance.OnSelectBuilding8;
+                @SelectBuilding8.performed += instance.OnSelectBuilding8;
+                @SelectBuilding8.canceled += instance.OnSelectBuilding8;
+                @SelectBuilding9.started += instance.OnSelectBuilding9;
+                @SelectBuilding9.performed += instance.OnSelectBuilding9;
+                @SelectBuilding9.canceled += instance.OnSelectBuilding9;
             }
         }
     }
@@ -302,5 +358,7 @@ public class @BuildingSelection : IInputActionCollection, IDisposable
         void OnSelectBuilding5(InputAction.CallbackContext context);
         void OnSelectBuilding6(InputAction.CallbackContext context);
         void OnSelectBuilding7(InputAction.CallbackContext context);
+        void OnSelectBuilding8(InputAction.CallbackContext context);
+        void OnSelectBuilding9(InputAction.CallbackContext context);
     }
 }

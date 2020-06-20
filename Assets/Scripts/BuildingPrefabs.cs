@@ -12,5 +12,6 @@ public class BuildingPrefabs : ScriptableObject
     public GameObject SheepFarm;
     public GameObject PotatoFarm;
     public GameObject SchnappsDistillery;
+    public GameObject FarmersResidence;
 }
  

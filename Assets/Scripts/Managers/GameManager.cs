@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MouseManager mouseManager;
     [SerializeField] private Texture2D _heightmap;
     [SerializeField] private MapManager _mapManager;
+    [SerializeField] private JobManager _jobManager;
     [SerializeField] private TileSet _tileSet;
     [SerializeField] private BuildingManager _buildingManager;
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     //TODO hardcoded for now
     private const int tickIntervalInSeconds = 60;
+    private const int taxRateEmployed = 5;
+    private const int taxRateUnemployed = 2;
+    private const int taxRateRetiree = 1;
     private float timeSinceLastTick;
 
     void Start()
@@ -54,6 +58,14 @@ public class GameManager : MonoBehaviour
     {
         // constant income
         moneyPool += 100;
+
+        var taxesEmployed = _jobManager.GetAmountOfEmployedWorkers() * taxRateEmployed;
+        var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * taxRateUnemployed;
+        var taxesRetiree = _jobManager.GetAmountOfRetirees() * taxRateRetiree;
+
+        var taxes = taxesEmployed + taxesRetiree + taxesUnemployed;
+        moneyPool += taxes;
+
         var upkeepCost = _buildingManager.GetUpkeepCost();
         moneyPool -= upkeepCost;
     }
@@ -70,15 +82,16 @@ public class GameManager : MonoBehaviour
         var requiredBuildingType = _buildingManager.GetCurrentPlacementBuilding();
 
 
+
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
 
-        var moneyAvailable = moneyPool >= building.ProductionBuildingStats.BuildCostMoney;
-        var resourceAvailable = storage.GetResourceIfAvailable(ResourceType.Plank, building.ProductionBuildingStats.BuildCostPlanks);
-        var allowedTileType = building.GetSupportedTiles().Contains(tile.Type);
+        var moneyAvailable = moneyPool >= building.GeneralBuildingStats.BuildCostMoney;
+        var resourceAvailable = storage.GetResourceIfAvailable(ResourceType.Plank, building.GeneralBuildingStats.BuildCostPlanks);
+        var allowedTileType = building.GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
 
         if (moneyAvailable && resourceAvailable && allowedTileType)
         {
-            moneyPool -= building.ProductionBuildingStats.BuildCostMoney;
+            moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
             _buildingManager.PlaceBuildingOnTile(building, tile);
             building.WareHouse = storage;
         }
