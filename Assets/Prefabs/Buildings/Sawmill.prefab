@@ -377,6 +377,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6318863191344131917}
   - component: {fileID: 8950749432726961612}
+  - component: {fileID: 4920115050961875007}
+  - component: {fileID: 4819243314496538610}
+  - component: {fileID: 1125921795437776676}
   m_Layer: 0
   m_Name: Sawmill
   m_TagString: Untagged
@@ -426,10 +429,50 @@ MonoBehaviour:
   GeneralBuildingStats: {fileID: 11400000, guid: c5dff91c05629934580d3ec72a210d42,
     type: 2}
   Tile: {fileID: 0}
+  _efficiency: 0
   ProductionBuildingStats: {fileID: 11400000, guid: c5dff91c05629934580d3ec72a210d42,
     type: 2}
   Jobs: []
   _jobTracker: {fileID: 11400000, guid: 1b60dd2ca2cec6846868942d1d42c04b, type: 2}
+--- !u!114 &4920115050961875007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954026833542935850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85977c2f65817dd4db2cd3924c01a1cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: -1
+--- !u!114 &4819243314496538610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954026833542935850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c8008bfda6c044dade8731fb417fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 2
+--- !u!114 &1125921795437776676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954026833542935850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6137a4b7318bc6d4bbc5d5b2d0f5f68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 1
 --- !u!1 &8368404554819250376
 GameObject:
   m_ObjectHideFlags: 0

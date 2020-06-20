@@ -187,6 +187,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7874498113446590766}
   - component: {fileID: 1463461167507386380}
+  - component: {fileID: 1177065549176971479}
+  - component: {fileID: 1443244224282759630}
+  - component: {fileID: 6561676638968512026}
   m_Layer: 0
   m_Name: LumberJack
   m_TagString: Untagged
@@ -234,10 +237,50 @@ MonoBehaviour:
   GeneralBuildingStats: {fileID: 11400000, guid: 81f1734a45dd5b74caf8aa840f314176,
     type: 2}
   Tile: {fileID: 0}
+  _efficiency: 0
   ProductionBuildingStats: {fileID: 11400000, guid: 81f1734a45dd5b74caf8aa840f314176,
     type: 2}
   Jobs: []
   _jobTracker: {fileID: 11400000, guid: 1b60dd2ca2cec6846868942d1d42c04b, type: 2}
+--- !u!114 &1177065549176971479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893346717362336099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85977c2f65817dd4db2cd3924c01a1cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: -1
+--- !u!114 &1443244224282759630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893346717362336099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c8008bfda6c044dade8731fb417fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 2
+--- !u!114 &6561676638968512026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893346717362336099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6137a4b7318bc6d4bbc5d5b2d0f5f68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 1
 --- !u!1 &8977840531981522527
 GameObject:
   m_ObjectHideFlags: 0

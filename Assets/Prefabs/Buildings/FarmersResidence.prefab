@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6019551638498996420}
   - component: {fileID: 6287887684083778632}
+  - component: {fileID: 7752082950601480970}
   m_Layer: 0
   m_Name: FarmersResidence
   m_TagString: Untagged
@@ -47,11 +48,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneralBuildingStats: {fileID: 11400000, guid: ac86dfc3b1629614cb95132534350997,
     type: 2}
-  tile: {fileID: 0}
+  Tile: {fileID: 0}
+  _efficiency: 0
   HousingBuildingStats: {fileID: 11400000, guid: ac86dfc3b1629614cb95132534350997,
     type: 2}
   WorkerPrefab: {fileID: 5029717785576979174, guid: 05a08fc1486519d45baaf6834c922bfc,
     type: 3}
+--- !u!114 &7752082950601480970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916968841135837682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6137a4b7318bc6d4bbc5d5b2d0f5f68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _importance: 1
 --- !u!1001 &2496640084286980787
 PrefabInstance:
   m_ObjectHideFlags: 0
