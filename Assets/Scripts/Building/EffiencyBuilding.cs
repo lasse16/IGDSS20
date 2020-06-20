@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace IGDSS20.Buildings
 {
     public abstract class EffiencyBuilding : Building
     {
@@ -13,8 +13,7 @@ namespace Assets.Scripts
         protected float _effectiveGenerationInterval;
 
         [SerializeField]
-        [ReadOnly]
-        protected float _efficiency;
+        private float _efficiency => CalculateEfficiency();
 
 
 
@@ -51,7 +50,7 @@ namespace Assets.Scripts
 
         protected float CalculateEffectiveInterval(float BaseIntervalInSeconds)
         {
-            return (1 / CalculateEfficiency()) * BaseIntervalInSeconds;
+            return 1 / CalculateEfficiency() * BaseIntervalInSeconds;
         }
 
     }

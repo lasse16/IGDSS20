@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using IGDSS20.Enums;
+using System.Collections.Generic;
 
-namespace Assets.Scripts
+namespace IGDSS20.Buildings
 {
     public interface IStorage
     {

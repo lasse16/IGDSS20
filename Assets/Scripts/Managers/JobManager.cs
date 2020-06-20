@@ -1,4 +1,7 @@
 ﻿using Assets.Scripts;
+using IGDSS20.Buildings;
+using IGDSS20.Helpers;
+using IGDSS20.Jobs;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,7 @@ public partial class JobManager : MonoBehaviour
     [SerializeField] private PopulationSet _population;
     [SerializeField] private JobTracker _freeJobs;
 
-    private readonly List<Job> _workplaces = new List<Job>();
+    [SerializeField] [ReadOnly] private List<Job> _workplaces = new List<Job>();
     [SerializeField] [ReadOnly] private List<Worker> _unemployedWorkers = new List<Worker>();
 
     private void Awake()

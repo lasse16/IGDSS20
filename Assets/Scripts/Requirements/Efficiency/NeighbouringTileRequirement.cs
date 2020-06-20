@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Enums;
+using UnityEngine;
 
 [RequireComponent(typeof(ProductionBuilding))]
 public class NeighbouringTileRequirement : MonoBehaviour, IEfficiencyRequirement

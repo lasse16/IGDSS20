@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using IGDSS20.Buildings;
+using UnityEngine;
 
 [RequireComponent(typeof(ProductionBuilding))]
 public class OccupancyRequirement : MonoBehaviour, IEfficiencyRequirement

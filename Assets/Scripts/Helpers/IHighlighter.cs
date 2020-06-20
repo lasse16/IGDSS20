@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace IGDSS20.Helpers
 {
     public interface IHighlighter
     {

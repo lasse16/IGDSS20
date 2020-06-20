@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

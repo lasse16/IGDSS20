@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Helpers;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,7 +25,7 @@ namespace Assets.Scripts
 
         private List<IHappinessRequirement> _happinessRequirements;
 
-        private const float ageIntervalInSeconds = 15;
+        private const float ageIntervalInSeconds = 1;
         private float timeSinceLastAgeIncrease;
 
         public float GetHappiness() => _happiness;

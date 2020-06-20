@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using IGDSS20.Enums;
 
-namespace Assets.Scripts
+namespace IGDSS20.Buildings
 {
     public class WareHouse : MonoBehaviour, IStorage
     {
