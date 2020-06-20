@@ -29,13 +29,18 @@ namespace Assets.Scripts
                 var importance = requirement.GetImportance();
 
                 //Convention for must-be requirements
-                if (importance == -1 && fulfillment == 0)
-                    return 0;
+                if (importance == -1)
+                {
+                    if (fulfillment == 0)
+                        return 0;
+
+                    importance = 1;
+                }
 
                 totalImportance += importance;
 
-
                 total += fulfillment * importance;
+
             }
 
             if (totalImportance == 0)
