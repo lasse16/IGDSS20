@@ -676,10 +676,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneralBuildingStats: {fileID: 11400000, guid: 780bc00f89a759144a06f2662b7b8cee,
     type: 2}
-  WareHouse: {fileID: 0}
-  tile: {fileID: 0}
+  Tile: {fileID: 0}
   ProductionBuildingStats: {fileID: 11400000, guid: 780bc00f89a759144a06f2662b7b8cee,
     type: 2}
+  Jobs: []
+  _jobTracker: {fileID: 11400000, guid: 1b60dd2ca2cec6846868942d1d42c04b, type: 2}
 --- !u!1 &9068321496806084215
 GameObject:
   m_ObjectHideFlags: 0

@@ -106,10 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GeneralBuildingStats: {fileID: 11400000, guid: a5af2517d2f6b264c8c9e62aa9f4b47d,
     type: 2}
-  WareHouse: {fileID: 0}
-  tile: {fileID: 0}
+  Tile: {fileID: 0}
   ProductionBuildingStats: {fileID: 11400000, guid: a5af2517d2f6b264c8c9e62aa9f4b47d,
     type: 2}
+  Jobs: []
+  _jobTracker: {fileID: 11400000, guid: 1b60dd2ca2cec6846868942d1d42c04b, type: 2}
 --- !u!1001 &567043491331808257
 PrefabInstance:
   m_ObjectHideFlags: 0
