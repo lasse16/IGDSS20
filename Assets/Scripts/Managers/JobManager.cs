@@ -11,7 +11,7 @@ public class JobManager : MonoBehaviour
 
     private readonly Dictionary<ProductionBuilding, int> _freeJobs = new Dictionary<ProductionBuilding, int>();
     private readonly Dictionary<Worker, ProductionBuilding> _workplaces = new Dictionary<Worker, ProductionBuilding>();
-    private readonly List<Worker> _unemployedWorkers = new List<Worker>();
+    [SerializeField] [ReadOnly] private List<Worker> _unemployedWorkers = new List<Worker>();
 
     private void Awake()
     {

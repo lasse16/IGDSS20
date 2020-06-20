@@ -6,21 +6,22 @@ namespace Assets.Scripts
 {
     public class Worker : MonoBehaviour
     {
+        public HousingBuilding Home;
+        public ProductionBuilding Workplace;
+
+        [SerializeField][ReadOnly] private int _age;
+        [SerializeField][ReadOnly] private float _happiness;
+
+
         [SerializeField] private WorkerEvent Birth;
         [SerializeField] private WorkerEvent ComingOfAge;
         [SerializeField] private WorkerEvent Retiring;
         [SerializeField] private WorkerEvent Death;
 
-        public HousingBuilding Home;
-        public ProductionBuilding Workplace;
+
+
 
         private List<IHappinessRequirement> _happinessRequirements;
-
-
-
-        [SerializeField] private int _age;
-        [Range(0, 1)]
-        [SerializeField] private float _happiness;
 
         private const float ageIntervalInSeconds = 15;
         private float timeSinceLastAgeIncrease;
