@@ -115,15 +115,7 @@ public partial class JobManager : MonoBehaviour
         else
             _unemployedWorkers.Remove(worker);
     }
-
-    [ContextMenu("PrintWorkers")]
-    private void PrintWorkers()
-    {
-        foreach (var item in _workplaces)
-        {
-            print(item);
-        }
-    }
 }
+
 
 
