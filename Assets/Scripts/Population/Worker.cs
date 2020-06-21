@@ -36,8 +36,6 @@ namespace Assets.Scripts
             Destroy(gameObject);
         }
 
-        [ContextMenu("GrowUp")]
-        public void AgeIncrease() => _age = 14;
         public void Employ(ProductionBuilding building) => Workplace = building;
 
 
@@ -110,5 +108,13 @@ namespace Assets.Scripts
                     break;
             }
         }
+        [ContextMenu("Invoke/Birth")]
+        public void ComingOfBirthInvoke() => Birth.Invoke(this);
+        [ContextMenu("Invoke/ComingOfAge")]
+        public void ComingOfAgeInvoke() => ComingOfAge.Invoke(this);
+        [ContextMenu("Invoke/Retiring")]
+        public void RetiringInvoke() => Retiring.Invoke(this);
+        [ContextMenu("Invoke/Death")]
+        public void DeathInvoke() => Death.Invoke(this);
     }
 }
