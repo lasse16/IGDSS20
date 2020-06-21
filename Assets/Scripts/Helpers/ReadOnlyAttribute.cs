@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ReadOnlyAttribute : PropertyAttribute
-{ }
+namespace IGDSS20.Helpers
+{
+    public class ReadOnlyAttribute : PropertyAttribute
+    { }
+}

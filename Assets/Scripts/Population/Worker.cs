@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Helpers;
+using IGDSS20.Jobs;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,7 +27,7 @@ namespace Assets.Scripts
 
         private List<IHappinessRequirement> _happinessRequirements;
 
-        private const float ageIntervalInSeconds = 15;
+        private const float ageIntervalInSeconds = 1;
         private float timeSinceLastAgeIncrease;
 
         public float GetHappiness() => _happiness;
@@ -33,9 +37,7 @@ namespace Assets.Scripts
             Destroy(gameObject);
         }
 
-        [ContextMenu("GrowUp")]
-        public void AgeIncrease() => _age = 14;
-        public void Employ(ProductionBuilding building) => Workplace = building;
+        public void Employ(Job job) => Workplace = job.Workplace;
 
 
         public void Setup(HousingBuilding home)
@@ -85,6 +87,10 @@ namespace Assets.Scripts
             return total / totalImportance;
         }
 
+        public void Fire()
+        {
+            Workplace = null;   
+        }
 
         private void CheckAge(int age)
         {
@@ -103,5 +109,13 @@ namespace Assets.Scripts
                     break;
             }
         }
+        [ContextMenu("Invoke/Birth")]
+        public void ComingOfBirthInvoke() => Birth.Invoke(this);
+        [ContextMenu("Invoke/ComingOfAge")]
+        public void ComingOfAgeInvoke() => ComingOfAge.Invoke(this);
+        [ContextMenu("Invoke/Retiring")]
+        public void RetiringInvoke() => Retiring.Invoke(this);
+        [ContextMenu("Invoke/Death")]
+        public void DeathInvoke() => Death.Invoke(this);
     }
 }

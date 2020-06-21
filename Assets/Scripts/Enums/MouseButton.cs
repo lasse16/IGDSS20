@@ -1,9 +1,9 @@
-﻿namespace Assets.Scripts.Enums
+﻿namespace IGDSS20.Enums
 {
     public enum MouseButton : byte
     {
-        LEFT = 0,
-        RIGHT = 1,
-        MIDDLE = 2,
+        Left = 0,
+        Right = 1,
+        Middle = 2,
     }
 }

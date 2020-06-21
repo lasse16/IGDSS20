@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -92,8 +93,8 @@ public class GameManager : MonoBehaviour
         if (moneyAvailable && resourceAvailable && allowedTileType)
         {
             moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
-            _buildingManager.PlaceBuildingOnTile(building, tile);
-            building.WareHouse = storage;
+            building.ConstructOnTile(tile, storage);
+            _buildingManager.AddPlacedBuilding(building);
         }
         else
         {

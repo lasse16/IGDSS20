@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using IGDSS20.Enums;
 
 [CreateAssetMenu(fileName ="data",menuName ="ScriptableObjects/GeneralBuildingStats")]
 public class GeneralBuildingStats : ScriptableObject

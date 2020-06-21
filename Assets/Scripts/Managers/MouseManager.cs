@@ -1,6 +1,6 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Enums;
-using Assets.Scripts.SerializableEvents;
+﻿using Assets.Scripts.SerializableEvents;
+using IGDSS20.Enums;
+using IGDSS20.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,18 +27,18 @@ public class MouseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown((int) MouseButton.LEFT))
+        if (Input.GetMouseButtonDown((int) MouseButton.Left))
         {
             LeftClick.Invoke(Input.mousePosition);
         }
 
-        if (Input.GetMouseButtonDown((int) MouseButton.RIGHT))
+        if (Input.GetMouseButtonDown((int) MouseButton.Right))
         {
             draggingRight = true;
         }
 
 
-        if (Input.GetMouseButtonUp((int) MouseButton.RIGHT))
+        if (Input.GetMouseButtonUp((int) MouseButton.Right))
         {
             draggingRight = false;
         }

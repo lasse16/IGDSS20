@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace IGDSS20.Helpers
 {
 
     public class MaterialHighlighter : MonoBehaviour, IHighlighter

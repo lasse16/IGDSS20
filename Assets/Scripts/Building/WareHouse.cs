@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using IGDSS20.Enums;
 
-namespace Assets.Scripts
+namespace IGDSS20.Buildings
 {
     public class WareHouse : MonoBehaviour, IStorage
     {
@@ -65,6 +66,15 @@ namespace Assets.Scripts
                 throw new ArgumentException($"Resource addition failed - resource{Enum.GetName(typeof(ResourceType), res)} count {count}");
 
             StockPile[res] += count;
+        }
+
+        [ContextMenu("PrintStockPile")]
+        private void PrintStockPile()
+        {
+            foreach (var item in StockPile)
+            {
+                print($"{Enum.GetName(typeof(ResourceType),item.Key)} : {item.Value}");
+            }
         }
 
     }

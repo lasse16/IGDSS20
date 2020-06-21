@@ -702,3 +702,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _population: {fileID: 11400000, guid: 4096f4c61e9ed8949822f92308326e36, type: 2}
+  _freeJobs: {fileID: 11400000, guid: 1b60dd2ca2cec6846868942d1d42c04b, type: 2}
+  _unemployedWorkers: []
