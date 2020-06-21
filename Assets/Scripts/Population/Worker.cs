@@ -1,5 +1,6 @@
 ﻿using IGDSS20.Buildings;
 using IGDSS20.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -87,6 +88,10 @@ namespace Assets.Scripts
             return total / totalImportance;
         }
 
+        public void Fire()
+        {
+            Workplace = null;   
+        }
 
         private void CheckAge(int age)
         {

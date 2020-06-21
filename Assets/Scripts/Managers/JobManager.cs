@@ -81,6 +81,7 @@ public partial class JobManager : MonoBehaviour
         var job = _workplaces.Find(x => x.Worker == worker);
         _workplaces.Remove(job);
         _freeJobs.Add(job);
+        worker.Fire();
     }
 
     private bool HasJob(Worker worker)
