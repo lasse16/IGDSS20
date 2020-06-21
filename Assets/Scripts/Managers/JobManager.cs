@@ -53,10 +53,12 @@ public partial class JobManager : MonoBehaviour
         //Implement priority system for work place finding
         var job = _freeJobs.GetRandomJob();
         _freeJobs.Remove(job);
-        var building = job.Workplace;
 
         _workplaces.Add(job);
-        worker.Employ(building);
+
+        worker.Employ(job);
+        job.Employ(worker);
+
 
         return true;
     }
@@ -81,6 +83,8 @@ public partial class JobManager : MonoBehaviour
         var job = _workplaces.Find(x => x.Worker == worker);
         _workplaces.Remove(job);
         _freeJobs.Add(job);
+
+        job.Fire();
         worker.Fire();
     }
 

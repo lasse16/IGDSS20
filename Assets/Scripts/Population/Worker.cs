@@ -1,5 +1,6 @@
 ﻿using IGDSS20.Buildings;
 using IGDSS20.Helpers;
+using IGDSS20.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Assets.Scripts
             Destroy(gameObject);
         }
 
-        public void Employ(ProductionBuilding building) => Workplace = building;
+        public void Employ(Job job) => Workplace = job.Workplace;
 
 
         public void Setup(HousingBuilding home)

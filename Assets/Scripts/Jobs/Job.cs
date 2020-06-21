@@ -20,5 +20,15 @@ namespace IGDSS20.Jobs
         {
             Workplace = workPlace;
         }
+
+        internal void Employ(Worker worker)
+        {
+            Worker = worker;
+        }
+
+        internal void Fire()
+        {
+            Worker = null;
+        }
     }
 }
