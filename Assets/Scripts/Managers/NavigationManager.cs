@@ -65,8 +65,10 @@ public class NavigationManager : MonoBehaviour
 
     /*
      * ugly to string method to check saved values in potenfialFields
+     * 
+     * CAN BE DELETED AFTER TESTING
      */ 
-    public string potentialFieldsToString(List<(Tile, int)> potFileds)
+    private string potentialFieldsToString(List<(Tile, int)> potFileds)
     {
         str = "";
 
