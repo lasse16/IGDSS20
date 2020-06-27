@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Texture2D _heightmap;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private JobManager _jobManager;
+    [SerializeField] private NavigationManager _navigationManager;
     [SerializeField] private TileSet _tileSet;
     [SerializeField] private BuildingManager _buildingManager;
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
             moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
             building.ConstructOnTile(tile, storage);
             _buildingManager.AddPlacedBuilding(building);
+            building.potentialFieldsList = _navigationManager.createPotentialFieldMapFor(building);
         }
         else
         {
