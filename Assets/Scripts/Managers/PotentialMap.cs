@@ -12,13 +12,16 @@ namespace IGDSS20.Assets.Scripts.Navigation
     {
         private Dictionary<Tile, int> _weightMap;
         private Tile _startingPoint;
+        private readonly TileWeights _weights;
 
-        public PotentialMap(Tile startingPoint)
+        public PotentialMap(Tile startingPoint, TileWeights weights)
         {
             _weightMap = new Dictionary<Tile, int>();
             _startingPoint = startingPoint;
+            _weights = weights;
 
             _weightMap.Add(startingPoint, 0);
+            AddNeighboringPotentialFields(startingPoint, 0);
         }
 
         public bool Add(Tile tile, int weight)
@@ -52,5 +55,28 @@ namespace IGDSS20.Assets.Scripts.Navigation
 
             return str;
         }
+
+        private void AddNeighboringPotentialFields(Tile lastTile, int lastTotalWeight)
+        {
+            foreach (Tile tile in lastTile.NeighbouringTiles)
+            {
+                int totalWeight = lastTotalWeight + _weights.GetWeightForTileType(tile.Type);
+
+                if (Add(tile, totalWeight))
+                {
+                    AddNeighboringPotentialFields(tile, totalWeight);
+                }
+                else
+                {
+                    var previousWeight = GetWeight(tile);
+                    if (totalWeight < previousWeight)
+                    {
+                        UpdateWeight(tile, totalWeight);
+                    }
+                }
+            }
+
+        }
+
     }
 }

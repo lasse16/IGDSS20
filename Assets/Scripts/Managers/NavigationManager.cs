@@ -18,36 +18,9 @@ public class NavigationManager : MonoBehaviour
     {
         // add start tile and its weight
         Tile buildingsTile = building.Tile;
-        var potentialFields = new PotentialMap(buildingsTile);
-
-        // start recursion
-        AddNeighboringPotentialFields(buildingsTile, 0, potentialFields);
+        var potentialFields = new PotentialMap(buildingsTile, _tileWeights);
 
         // return result
         return potentialFields;
-    }
-
-    // this is recursive
-    // fills the list of potential fields with tiles and their weights. 
-    private void AddNeighboringPotentialFields(Tile lastTile, int lastTotalWeight, PotentialMap potentialfields)
-    {
-        foreach (Tile tile in lastTile.NeighbouringTiles)
-        {
-            int totalWeight = lastTotalWeight + _tileWeights.GetWeightForTileType(tile.Type);
-
-            if (potentialfields.Add(tile, totalWeight))
-            {
-                AddNeighboringPotentialFields(tile, totalWeight, potentialfields);
-            }
-            else
-            {
-                var previousWeight = potentialfields.GetWeight(tile);
-                if (totalWeight < previousWeight)
-                {
-                    potentialfields.UpdateWeight(tile, totalWeight);
-                }
-            }
-        }
-
     }
 }
