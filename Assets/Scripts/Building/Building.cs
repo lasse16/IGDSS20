@@ -14,6 +14,7 @@ namespace IGDSS20.Buildings
         public Tile Tile;
         public abstract bool ConstructOnTile(Tile tile, IStorage storage);
 
-
+        // for navigation
+        public List<(Tile, int)> potentialFieldsList;
     }
 }

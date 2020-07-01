@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using IGDSS20.Buildings;
+using IGDSS20.Enums;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +16,7 @@ public class NavigationManager : MonoBehaviour
     public List<(Tile,int)> createPotentialFieldMapFor(Building building)
     {
         // add start tile and its weight
-        Tile buildingsTile = building.tile;
+        Tile buildingsTile = building.Tile;
         List <(Tile, int)> potentialFields = new List<(Tile, int)>();
         potentialFields.Add((buildingsTile, weightOfStartBuilding));
 
