@@ -16,11 +16,9 @@ public class NavigationManager : MonoBehaviour
     /// <param name="building">Building to use as starting point for the potential map</param>
     public PotentialMap CreatePotentialFieldMapFor(Building building)
     {
-        // add start tile and its weight
         Tile buildingsTile = building.Tile;
         var potentialFields = new PotentialMap(buildingsTile, _tileWeights);
 
-        // return result
         return potentialFields;
     }
 }
