@@ -11,14 +11,14 @@ public class NavigationManager : MonoBehaviour
     /// Creates a list that contains a tile and its weight that depends on its type & the path to it. 
     /// </summary>
     /// <param name="building">Building to use as starting point for the potential map</param>
-    public PotentialMap createPotentialFieldMapFor(Building building)
+    public PotentialMap CreatePotentialFieldMapFor(Building building)
     {
         // add start tile and its weight
         Tile buildingsTile = building.Tile;
         var potentialFields = new PotentialMap(buildingsTile);
 
         // start recursion
-        addNeighboringPotentialFields(buildingsTile, 0, potentialFields);
+        AddNeighboringPotentialFields(buildingsTile, 0, potentialFields);
 
         // return result
         return potentialFields;
@@ -26,7 +26,7 @@ public class NavigationManager : MonoBehaviour
 
     // this is recursive
     // fills the list of potential fields with tiles and their weights. 
-    private void addNeighboringPotentialFields(Tile lastTile, int lastTotalWeight, PotentialMap potentialfields)
+    private void AddNeighboringPotentialFields(Tile lastTile, int lastTotalWeight, PotentialMap potentialfields)
     {
         foreach (Tile tile in lastTile.NeighbouringTiles)
         {
@@ -34,7 +34,7 @@ public class NavigationManager : MonoBehaviour
 
             if (potentialfields.Add(tile, totalWeight))
             {
-                addNeighboringPotentialFields(tile, totalWeight, potentialfields);
+                AddNeighboringPotentialFields(tile, totalWeight, potentialfields);
             }
             else
             {

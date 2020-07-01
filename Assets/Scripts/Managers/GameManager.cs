@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
             building.ConstructOnTile(tile, storage);
             _buildingManager.AddPlacedBuilding(building);
-            building.potentialFieldsList = _navigationManager.createPotentialFieldMapFor(building);
+            building.potentialFieldsList = _navigationManager.CreatePotentialFieldMapFor(building);
         }
         else
         {
