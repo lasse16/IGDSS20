@@ -3,10 +3,13 @@ using IGDSS20.Buildings;
 using IGDSS20.Enums;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NavigationManager : MonoBehaviour
 {
+    [SerializeField] private TileWeights _tileWeights;
+
     /// <summary>
     /// Creates a list that contains a tile and its weight that depends on its type & the path to it. 
     /// </summary>
@@ -30,7 +33,7 @@ public class NavigationManager : MonoBehaviour
     {
         foreach (Tile tile in lastTile.NeighbouringTiles)
         {
-            int totalWeight = lastTotalWeight + getWeightForTile(tile);
+            int totalWeight = lastTotalWeight + _tileWeights.GetWeightForTileType(tile.Type);
 
             if (potentialfields.Add(tile, totalWeight))
             {
@@ -46,32 +49,5 @@ public class NavigationManager : MonoBehaviour
             }
         }
 
-    }
-
-    /*
-     * Return weight for tile type. 
-     * 
-     * possible: return also bool that saves, if there has benn an error (default: ...)
-     * --> catch in Potential Field Map Generation --> wight of current field is int.Infinite
-     */
-    private int getWeightForTile(Tile tile)
-    {
-        switch (tile.Type)
-        {
-            case TileType.Water:
-                return 30;
-            case TileType.Sand:
-                return 2;
-            case TileType.Grass:
-                return 1;
-            case TileType.Forest:
-                return 2;
-            case TileType.Stone:
-                return 1;
-            case TileType.Mountain:
-                return 3;
-            default:
-                return int.MaxValue;
-        }
     }
 }
