@@ -12,7 +12,10 @@ public class NavigationManager : MonoBehaviour
     [Tooltip("This is the weight of the start tile. Assignment says 0.")]
     public int weightOfStartBuilding = 0;
 
-    // Creates a list that contains a tile and its weight that depends on its type & the path to it. 
+    /// <summary>
+    /// Creates a list that contains a tile and its weight that depends on its type & the path to it. 
+    /// </summary>
+    /// <param name="building">Building to use as starting point for the potential map</param>
     public List<(Tile,int)> createPotentialFieldMapFor(Building building)
     {
         // add start tile and its weight
