@@ -72,6 +72,7 @@ namespace IGDSS20.Assets.Scripts.Navigation
                     if (totalWeight < previousWeight)
                     {
                         UpdateWeight(tile, totalWeight);
+                        AddNeighboringPotentialFields(tile, totalWeight);
                     }
                 }
             }
