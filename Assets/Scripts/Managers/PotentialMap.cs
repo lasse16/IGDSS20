@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.WSA;
 
 namespace IGDSS20.Assets.Scripts.Navigation
@@ -77,6 +80,21 @@ namespace IGDSS20.Assets.Scripts.Navigation
                 }
             }
 
+        }
+
+        public void DisplayOnMap()
+        {
+            foreach (var tilePotential in _weightMap)
+            {
+                var tile = tilePotential.Key;
+                var potential = tilePotential.Value;
+
+                var text = new GameObject().AddComponent<TextMeshPro>();
+                //Adjust for offsetted tile origin
+                text.transform.position = tile.gameObject.transform.position + new Vector3(8,1,0);
+                text.transform.rotation = Quaternion.Euler(90, 0, 0);
+                text.SetText($"{potential}");
+            }
         }
 
     }
