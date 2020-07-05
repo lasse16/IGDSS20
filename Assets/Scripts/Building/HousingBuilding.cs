@@ -47,7 +47,6 @@ namespace IGDSS20.Buildings
             }
         }
 
-
         public void RemoveWorker(Worker worker)
         {
             _inhabitants.Remove(worker);
@@ -74,6 +73,5 @@ namespace IGDSS20.Buildings
         }
 
         public List<Worker> GetOccupants() => _inhabitants;
-
     }
 }

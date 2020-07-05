@@ -11,4 +11,7 @@ public class HousingBuildingStats : GeneralBuildingStats
 
     [Tooltip("Interval in which new workers are created")]
     public int WorkerGenerationIntervalInSeconds;
+
+    [Tooltip("Interval between work shifts")]
+    public int RecoveryTimeBetweenWorkShiftsSeconds;
 }

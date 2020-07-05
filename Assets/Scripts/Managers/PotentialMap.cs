@@ -1,5 +1,6 @@
 ﻿using IGDSS20.Buildings;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using UnityEngine.WSA;
 
 namespace IGDSS20.Assets.Scripts.Navigation
 {
-    public class PotentialMap
+    public class PotentialMap : IEnumerable
     {
         private Dictionary<Tile, int> _weightMap;
         private Tile _startingPoint;
@@ -79,23 +80,11 @@ namespace IGDSS20.Assets.Scripts.Navigation
                     }
                 }
             }
-
         }
 
-        public void DisplayOnMap()
-        {
-            foreach (var tilePotential in _weightMap)
-            {
-                var tile = tilePotential.Key;
-                var potential = tilePotential.Value;
+        public IEnumerator<KeyValuePair<Tile, int>> GetEnumerator() => _weightMap.GetEnumerator();
 
-                var text = new GameObject().AddComponent<TextMeshPro>();
-                //Adjust for offsetted tile origin
-                text.transform.position = tile.gameObject.transform.position + new Vector3(8,1,0);
-                text.transform.rotation = Quaternion.Euler(90, 0, 0);
-                text.SetText($"{potential}");
-            }
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _weightMap.GetEnumerator();
 
     }
 }

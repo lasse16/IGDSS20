@@ -56,7 +56,7 @@ public partial class JobManager : MonoBehaviour
 
         _workplaces.Add(job);
 
-        worker.Employ(job);
+
         job.Employ(worker);
 
 
