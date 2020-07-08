@@ -562,6 +562,9 @@ GameObject:
   - component: {fileID: 1768092942}
   - component: {fileID: 1768092941}
   - component: {fileID: 1768092943}
+  - component: {fileID: 1768092946}
+  - component: {fileID: 1768092945}
+  - component: {fileID: 1768092944}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -590,7 +593,7 @@ MonoBehaviour:
   _tileSet: {fileID: 11400000, guid: 2ffc378e19e67f44aba431610b4ce1f4, type: 2}
   _buildingManager: {fileID: 1416173823}
   AllowCameraAngleToInfluenceBoundaries: 0
-  moneyPool: 0
+  _moneyPool: 0
 --- !u!4 &1768092942
 Transform:
   m_ObjectHideFlags: 0
@@ -615,6 +618,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 208c6212686f9484288232a2484b11ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1768092944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768092940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2fa2aa97ed48c045a5d3fcac823e776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _threshold: 1000
+  _population: {fileID: 11400000, guid: 4096f4c61e9ed8949822f92308326e36, type: 2}
+--- !u!114 &1768092945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768092940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf02b7c3a61cd94da6e720dd50a45ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _threshold: 1000000
+--- !u!114 &1768092946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768092940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c63358b98ec2b4a9f34121f232c2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1914028082

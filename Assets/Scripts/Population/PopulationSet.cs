@@ -52,6 +52,8 @@ public class PopulationSet : ScriptableObject
         }
     }
 
+    public int GetPopulationSize() => _children.Count + _workers.Count + _retirees.Count;
+
     //These are here, so that they can be subscribed to, based on a population instead of having to subscribe to each individual worker
     public void PropagateWorkerBirth(Worker worker) => WorkerBirth.Invoke(worker);
     public void PropagateWorkerComingOfAge(Worker worker) => WorkerComingOfAge.Invoke(worker);
