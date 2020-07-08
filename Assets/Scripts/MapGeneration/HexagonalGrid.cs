@@ -6,8 +6,26 @@ using System.Collections.Generic;
 internal class HexagonalGrid : Map
 {
 
-    private static XYPair[] XYDifferenceNeighboursOddRow = new XYPair[] { new XYPair(1, 0), new XYPair(+1, -1), new XYPair(0, -1), new XYPair(-1, -1), new XYPair(-1, 0), new XYPair(0, 1) };
-    private static XYPair[]  XYDifferenceNeighboursEvenRow = new XYPair[] { new XYPair(1, 1), new XYPair(1, 0), new XYPair(0, -1), new XYPair(-1, 0), new XYPair(-1, 1), new XYPair(0, 1) };
+    private static readonly XYPair[] XYDifferenceNeighboursOddRow = new XYPair[] { new XYPair(1, 0), new XYPair(1, -1), new XYPair(0, -1), new XYPair(-1, -1), new XYPair(-1, 0), new XYPair(0, 1) };
+    private static readonly XYPair[] XYDifferenceNeighboursEvenRow = new XYPair[] { new XYPair(1, 1), new XYPair(1, 0), new XYPair(0, -1), new XYPair(-1, 0), new XYPair(-1, 1), new XYPair(0, 1) };
+
+    private static readonly Dictionary<XYPair, HexEdge> _edgeNeighbourOddRow = new Dictionary<XYPair, HexEdge> {
+        { new XYPair(1, 0), HexEdge.UpperRight},
+        { new XYPair(1, -1), HexEdge.LowerRight},
+        { new XYPair(0, -1), HexEdge.LowerCenter},
+        { new XYPair(-1, -1), HexEdge.LowerLeft},
+        { new XYPair(-1, 0), HexEdge.UpperLeft},
+        { new XYPair(0, 1), HexEdge.UpperCenter}
+    };
+
+    private static readonly Dictionary<XYPair, HexEdge> _edgeNeighbourEvenRow = new Dictionary<XYPair, HexEdge> {
+        { new XYPair(1, 1), HexEdge.UpperRight},
+        { new XYPair(1, 0), HexEdge.LowerRight},
+        { new XYPair(0, -1), HexEdge.LowerCenter},
+        { new XYPair(-1, 0), HexEdge.LowerLeft},
+        { new XYPair(-1, 1), HexEdge.UpperLeft},
+        { new XYPair(0, 1), HexEdge.UpperCenter}
+    };
 
     public Vector3 Origin { get; }
 
@@ -67,33 +85,39 @@ internal class HexagonalGrid : Map
         }
     }
 
-    public List<GameObject> FindNeighboursOfTile(int x, int y)
+    public Dictionary<GameObject,HexEdge> FindNeighboursOfTile(int x, int y)
     {
-        var neighbours = new List<GameObject>();
+        var neighbours = new Dictionary<GameObject,HexEdge>();
 
         var possibleNeighbours = GetPossibleNeigbours(x, y);
         foreach (var neighbour in possibleNeighbours)
         {
-            if (0 <= neighbour.X && neighbour.X < gridWidth && 0 <= neighbour.Y && neighbour.Y < gridHeight)
-                neighbours.Add(GetTile(neighbour.X, neighbour.Y));
+            var neighbourCooords = neighbour.Key;
+            var neighbourEdge = neighbour.Value;
+
+            if (0 <= neighbourCooords.X && neighbourCooords.X < gridWidth && 0 <= neighbourCooords.Y && neighbourCooords.Y < gridHeight)
+            {
+                neighbours.Add(GetTile(neighbourCooords.X, neighbourCooords.Y),neighbourEdge);
+            }
         }
 
         return neighbours;
     }
 
-    private XYPair[] GetPossibleNeigbours(int x, int y)
+    private Dictionary<XYPair,HexEdge> GetPossibleNeigbours(int x, int y)
     {
         var even = (x & 1) == 0;
-        var differences = even ? XYDifferenceNeighboursEvenRow : XYDifferenceNeighboursOddRow;
-        XYPair[] possibleNeighbours = new XYPair[6];
+        var differences = even ?  _edgeNeighbourEvenRow : _edgeNeighbourOddRow;
+        var res = new Dictionary<XYPair, HexEdge>();
 
-        for (int i = 0; i < 6; i++)
+        foreach (var pair in differences)
         {
-            var diff = differences[i];
-            possibleNeighbours[i] = new XYPair(x + diff.X, y + diff.Y);
+            var diff = pair.Key;
+            var edge = pair.Value;
+            res.Add(new XYPair(x + diff.X, y + diff.Y),edge);
         }
 
-        return possibleNeighbours;
+        return res;
     }
 
     public GameObject GetTile(int x, int y)
@@ -148,5 +172,32 @@ internal class HexagonalGrid : Map
 
         public readonly int X;
         public readonly int Y;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is XYPair)
+            {
+                var other = (XYPair) obj;
+                return other.X == X && other.Y == Y;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            //Stolen from MIT Class
+            //https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-introduction-to-algorithms-sma-5503-fall-2005/video-lectures/lecture-7-hashing-hash-functions/
+            return X * 31 + Y;
+        }
     }
+}
+
+public enum HexEdge
+{
+    UpperLeft = 0,
+    UpperCenter = 1,
+    UpperRight = 2,
+    LowerRight = 3,
+    LowerCenter = 4,
+    LowerLeft = 5,
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TileEdges : MonoBehaviour
@@ -38,26 +36,26 @@ public class TileEdges : MonoBehaviour
 
     public Color GetedgeColor() => _edgeColor;
 
-    public void DisableEdge(TileEdge edge)
+    public void DisableEdge(HexEdge edge)
     {
         switch (edge)
         {
-            case TileEdge.UpperLeft:
+            case HexEdge.UpperLeft:
                 UpperLeftEdge.gameObject.SetActive(false);
                 break;
-            case TileEdge.UpperCenter:
+            case HexEdge.UpperCenter:
                 UpperCenterEdge.gameObject.SetActive(false);
                 break;
-            case TileEdge.UpperRight:
+            case HexEdge.UpperRight:
                 UpperRightEdge.gameObject.SetActive(false);
                 break;
-            case TileEdge.LowerRight:
+            case HexEdge.LowerRight:
                 LowerRightEdge.gameObject.SetActive(false);
                 break;
-            case TileEdge.LowerCenter:
+            case HexEdge.LowerCenter:
                 LowerCenterEdge.gameObject.SetActive(false);
                 break;
-            case TileEdge.LowerLeft:
+            case HexEdge.LowerLeft:
                 LowerLeftEdge.gameObject.SetActive(false);
                 break;
             default:
@@ -66,42 +64,30 @@ public class TileEdges : MonoBehaviour
     }
     
 
-    public void EnableEdge(TileEdge edge)
+    public void EnableEdge(HexEdge edge)
     {
         switch (edge)
         {
-            case TileEdge.UpperLeft:
+            case HexEdge.UpperLeft:
                 UpperLeftEdge.gameObject.SetActive(true);
                 break;
-            case TileEdge.UpperCenter:
+            case HexEdge.UpperCenter:
                 UpperCenterEdge.gameObject.SetActive(true);
                 break;
-            case TileEdge.UpperRight:
+            case HexEdge.UpperRight:
                 UpperRightEdge.gameObject.SetActive(true);
                 break;
-            case TileEdge.LowerRight:
+            case HexEdge.LowerRight:
                 LowerRightEdge.gameObject.SetActive(true);
                 break;
-            case TileEdge.LowerCenter:
+            case HexEdge.LowerCenter:
                 LowerCenterEdge.gameObject.SetActive(true);
                 break;
-            case TileEdge.LowerLeft:
+            case HexEdge.LowerLeft:
                 LowerLeftEdge.gameObject.SetActive(true);
                 break;
             default:
                 break;
         }
     }
-
-
-}
-
-public enum TileEdge
-{
-    UpperLeft = 0,
-    UpperCenter = 1,
-    UpperRight = 2,
-    LowerRight = 3,
-    LowerCenter = 4,
-    LowerLeft = 5,
 }

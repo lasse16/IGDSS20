@@ -46,8 +46,15 @@ public class MapManager : MonoBehaviour
                 Tile component = tile.GetComponent<Tile>();
 
                 //Damn fancy LINQ stuff, VS refactor FTW
-                List<Tile> neighbours = (from item in neighbouringGameObjects
+                List<Tile> neighbours = (from item in neighbouringGameObjects.Keys
                                          select item.GetComponent<Tile>()).ToList();
+
+                foreach (var item in neighbouringGameObjects)
+                {
+                    var obj = item.Key;
+                    if (component.Type == obj.GetComponent<Tile>().Type)
+                        component.Edges.DisableEdge(item.Value);
+                }
 
                 component.NeighbouringTiles = neighbours;
             }
