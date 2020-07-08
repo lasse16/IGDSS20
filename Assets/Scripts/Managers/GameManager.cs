@@ -20,11 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int moneyPool;
 
     //TODO hardcoded for now
-    private const int tickIntervalInSeconds = 60;
+    private const int tickIntervalInSeconds = 5;
     private const int taxRateEmployed = 5;
     private const int taxRateUnemployed = 2;
     private const int taxRateRetiree = 1;
-    private float timeSinceLastTick;
 
     void Start()
     {
@@ -41,18 +40,7 @@ public class GameManager : MonoBehaviour
 
         cameraManager.cameraBoundaries = bounds;
 
-    }
-
-
-    void Update()
-    {
-        timeSinceLastTick += Time.deltaTime;
-
-        if (timeSinceLastTick > tickIntervalInSeconds)
-        {
-            TickEconomy();
-            timeSinceLastTick = -tickIntervalInSeconds;
-        }
+        InvokeRepeating("TickEconomy", 0, tickIntervalInSeconds);
     }
 
     [ContextMenu("ForceEconomyTick")]
