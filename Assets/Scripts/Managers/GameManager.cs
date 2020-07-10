@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
     [SerializeField] private bool AllowCameraAngleToInfluenceBoundaries;
 
+    [SerializeField] private GameObject _gameWonScreen;
+    [SerializeField] private GameObject _gameLostScreen;
+    private bool _gameEnded;
+
     [SerializeField] private int _moneyPool;
     private IWinCondition[] _winConditions;
     private ILossCondition[] _lossConditions;
@@ -57,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var item in _winConditions)
         {
-            if (item.Satisfied())
+            if (item.Satisfied() && !_gameEnded)
             {
                 EndGame();
                 DisplayWonMessage(item);
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var item in _lossConditions)
         {
-            if (item.Satisfied())
+            if (item.Satisfied() && !_gameEnded)
             {
                 EndGame();
                 DisplayLossMessage(item);
@@ -77,11 +81,13 @@ public class GameManager : MonoBehaviour
     private void DisplayLossMessage(ILossCondition item)
     {
         print($"Lost: {item.Reason()}");
+        _gameLostScreen.SetActive(true);
     }
 
     private void DisplayWonMessage(IWinCondition item)
     {
         print($"Won:  {item.Reason()}");
+        _gameWonScreen.SetActive(true);
     }
 
     [ContextMenu("ForceEconomyTick")]
@@ -143,5 +149,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
 
         print("Game ended");
+        _gameEnded = true;
     }
 }
