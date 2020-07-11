@@ -4,6 +4,7 @@ using IGDSS20.Helpers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Responsible for mouse movement including panning,zooming and clicking
@@ -29,7 +30,8 @@ public class MouseManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown((int) MouseButton.Left))
         {
-            LeftClick.Invoke(Input.mousePosition);
+            // ~ click.stop at UI
+            if (!EventSystem.current.IsPointerOverGameObject()) LeftClick.Invoke(Input.mousePosition);            
         }
 
         if (Input.GetMouseButtonDown((int) MouseButton.Right))
