@@ -94,7 +94,7 @@ public class BuildingManager : MonoBehaviour, BuildingSelection.IGameplayActions
     public void SetRequestedBuildingToSheepfarm() => _currentActivePlacement = BuildingType.SheepFarm;
     public void SetRequestedBuildingToPotatoFarm() => _currentActivePlacement = BuildingType.PotatoFarm;
     public void SetRequestedBuildingToSchnappsDistillery() => _currentActivePlacement = BuildingType.SchnappsDistillery;
-    private void SetRequestedBuildingToFarmersResidence() => _currentActivePlacement = BuildingType.FarmersResidence;
+    public void SetRequestedBuildingToFarmersResidence() => _currentActivePlacement = BuildingType.FarmersResidence;
 
     public void OnSelectBuilding1(InputAction.CallbackContext context) => SetRequestedBuildingToFishery();
     public void OnSelectBuilding2(InputAction.CallbackContext context) => SetRequestedBuildingToLumberjack();
