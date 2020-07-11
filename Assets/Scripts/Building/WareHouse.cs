@@ -77,5 +77,10 @@ namespace IGDSS20.Buildings
             }
         }
 
+        public int GetCountOfResource(ResourceType res)
+        {
+            return StockPile[res];
+        }
+
     }
 }
