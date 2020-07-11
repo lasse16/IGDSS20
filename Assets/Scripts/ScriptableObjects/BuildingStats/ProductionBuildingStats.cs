@@ -28,5 +28,9 @@ public class ProductionBuildingStats : GeneralBuildingStats
 
     [Tooltip("Number of workers required for full efficiency")]
     public int JobsAvailable;
+
+
+    [Tooltip("Seconds a workers shift takes")]
+    public int WorkingTime;
 }
 

@@ -24,6 +24,8 @@ namespace IGDSS20.Jobs
         internal void Employ(Worker worker)
         {
             Worker = worker;
+            worker.Employ(this);
+            Workplace.EmployWorker(worker);
         }
 
         internal void Fire()

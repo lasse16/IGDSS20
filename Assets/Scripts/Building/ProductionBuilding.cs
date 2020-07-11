@@ -14,6 +14,8 @@ namespace IGDSS20.Buildings
         public ProductionBuildingStats ProductionBuildingStats;
         public List<Job> Jobs;
 
+        private Dictionary<Worker, float> _timeSinceArrival;
+
         [SerializeField] private JobTracker _jobTracker;
 
 
@@ -24,6 +26,7 @@ namespace IGDSS20.Buildings
         void Start()
         {
             _effectiveGenerationInterval = CalculateEffectiveInterval(ProductionBuildingStats.ResourceGenerationInterval);
+            _timeSinceArrival = new Dictionary<Worker, float>();
         }
 
         void Update()
@@ -46,8 +49,27 @@ namespace IGDSS20.Buildings
 
                 productionRunning = false;
             }
+
+            SendHomeWorkersWithFinishedShift();
         }
 
+        private void SendHomeWorkersWithFinishedShift()
+        {
+            foreach (var item in _timeSinceArrival)
+            {
+                var time = _timeSinceArrival[item.Key] += Time.deltaTime;
+                if (time > ProductionBuildingStats.WorkingTime)
+                {
+                    SendHome(item.Key);
+                }
+            }
+        }
+
+        private void SendHome(Worker worker)
+        {
+            _timeSinceArrival.Remove(worker);
+            worker.MoveHome(Tile);
+        }
 
         private void TryStartProduction()
         {
@@ -85,6 +107,16 @@ namespace IGDSS20.Buildings
         public List<Worker> GetOccupants()
         {
             return Jobs.Select(x => x.Worker).Where(x => !(x is null)).ToList();
+        }
+
+        public void EmployWorker(Worker worker)
+        {
+            worker.ArrivedAtWork.AddListener(WorkerArrivedAtWork);
+        }
+
+        private void WorkerArrivedAtWork(Worker worker)
+        {
+            _timeSinceArrival.Add(worker, 0);
         }
     }
 }
