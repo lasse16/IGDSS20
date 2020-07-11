@@ -17,14 +17,27 @@ public class GameManager : MonoBehaviour
     [Tooltip("Allow the camera to move past the map's boundaries in relation to the camera angle")]
     [SerializeField] private bool AllowCameraAngleToInfluenceBoundaries;
 
-    [SerializeField] private int moneyPool;
+    [SerializeField] private GameObject _gameWonScreen;
+    [SerializeField] private GameObject _gameLostScreen;
+    private bool _gameEnded;
+
+    [SerializeField] private int _moneyPool;
+    private IWinCondition[] _winConditions;
+    private ILossCondition[] _lossConditions;
 
     //TODO hardcoded for now
-    private const int tickIntervalInSeconds = 60;
+    private const int tickIntervalInSeconds = 5;
     private const int taxRateEmployed = 5;
     private const int taxRateUnemployed = 2;
     private const int taxRateRetiree = 1;
-    private float timeSinceLastTick;
+
+
+    private void Awake()
+    {
+        _winConditions = GetComponents<IWinCondition>();
+        _lossConditions = GetComponents<ILossCondition>();
+    }
+
 
     void Start()
     {
@@ -41,36 +54,59 @@ public class GameManager : MonoBehaviour
 
         cameraManager.cameraBoundaries = bounds;
 
+        InvokeRepeating("TickEconomy", 0, tickIntervalInSeconds);
     }
 
-
-    void Update()
+    private void Update()
     {
-        timeSinceLastTick += Time.deltaTime;
-
-        if (timeSinceLastTick > tickIntervalInSeconds)
+        foreach (var item in _winConditions)
         {
-            TickEconomy();
-            timeSinceLastTick = -tickIntervalInSeconds;
+            if (item.Satisfied() && !_gameEnded)
+            {
+                EndGame();
+                DisplayWonMessage(item);
+            }
         }
+
+        foreach (var item in _lossConditions)
+        {
+            if (item.Satisfied() && !_gameEnded)
+            {
+                EndGame();
+                DisplayLossMessage(item);
+            }
+        }
+    }
+
+    private void DisplayLossMessage(ILossCondition item)
+    {
+        print($"Lost: {item.Reason()}");
+        _gameLostScreen.SetActive(true);
+    }
+
+    private void DisplayWonMessage(IWinCondition item)
+    {
+        print($"Won:  {item.Reason()}");
+        _gameWonScreen.SetActive(true);
     }
 
     [ContextMenu("ForceEconomyTick")]
     private void TickEconomy()
     {
         // constant income
-        moneyPool += 100;
+        _moneyPool += 100;
 
         var taxesEmployed = _jobManager.GetAmountOfEmployedWorkers() * taxRateEmployed;
         var taxesUnemployed = _jobManager.GetAmountOfUnemployedWorkers() * taxRateUnemployed;
         var taxesRetiree = _jobManager.GetAmountOfRetirees() * taxRateRetiree;
 
         var taxes = taxesEmployed + taxesRetiree + taxesUnemployed;
-        moneyPool += taxes;
+        _moneyPool += taxes;
 
         var upkeepCost = _buildingManager.GetUpkeepCost();
-        moneyPool -= upkeepCost;
+        _moneyPool -= upkeepCost;
     }
+
 
     public void SpawnBuilding(Vector3 mousePosition)
     {
@@ -87,13 +123,13 @@ public class GameManager : MonoBehaviour
 
         var building = _buildingManager.GetBuildingOfType(requiredBuildingType);
 
-        var moneyAvailable = moneyPool >= building.GeneralBuildingStats.BuildCostMoney;
+        var moneyAvailable = _moneyPool >= building.GeneralBuildingStats.BuildCostMoney;
         var resourceAvailable = storage.GetResourceIfAvailable(ResourceType.Plank, building.GeneralBuildingStats.BuildCostPlanks);
         var allowedTileType = building.GeneralBuildingStats.AllowedTileTypes.Contains(tile.Type);
 
         if (moneyAvailable && resourceAvailable && allowedTileType)
         {
-            moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
+            _moneyPool -= building.GeneralBuildingStats.BuildCostMoney;
             building.ConstructOnTile(tile, storage);
             _buildingManager.AddPlacedBuilding(building);
             building.potentialFieldsList = _navigationManager.CreatePotentialFieldMapFor(building);
@@ -103,5 +139,16 @@ public class GameManager : MonoBehaviour
             print($"Placement of building failed. allowed tile : {allowedTileType} , resources available {resourceAvailable} , money available {moneyAvailable}");
             Destroy(building.gameObject);
         }
+    }
+
+    public int GetMoneyAmount() => _moneyPool;
+
+    public void EndGame()
+    {
+        StopCoroutine("TickEconomy");
+        Time.timeScale = 0;
+
+        print("Game ended");
+        _gameEnded = true;
     }
 }
