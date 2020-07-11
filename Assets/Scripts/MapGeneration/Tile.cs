@@ -5,5 +5,6 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public TileType Type;
+    public TileEdges Edges;
     public List<Tile> NeighbouringTiles;
 }
